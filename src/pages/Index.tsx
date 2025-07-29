@@ -3,12 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckIcon, StarIcon, ArrowRightIcon, RocketIcon, ZapIcon, ShieldCheckIcon, UsersIcon, TrendingUpIcon, AwardIcon, TargetIcon, GlobeIcon, SearchIcon, EditIcon, BarChart3Icon, ImageIcon, BrainCircuitIcon, DollarSignIcon } from "lucide-react";
+import { CheckIcon, StarIcon, ArrowRightIcon, RocketIcon, ZapIcon, ShieldCheckIcon, UsersIcon, TrendingUpIcon, AwardIcon, TargetIcon, GlobeIcon, SearchIcon, EditIcon, BarChart3Icon, ImageIcon, BrainCircuitIcon, DollarSignIcon, DownloadIcon, MailIcon } from "lucide-react";
 import heroImage from "@/assets/hero-amazon-ai.jpg";
 import featuresImage from "@/assets/features-showcase.jpg";
 import successImage from "@/assets/success-metrics.jpg";
 import Logo from "@/components/Logo";
-import FounderBio from "@/components/FounderBio";
 
 const Index = () => {
   const [selectedPlan, setSelectedPlan] = useState("pro");
@@ -435,7 +434,7 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-12 space-y-4">
               <img
                 src={successImage}
                 alt="Success metrics dashboard showing affiliate marketing growth and earnings"
@@ -746,8 +745,99 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Founder Bio Section */}
-        <FounderBio />
+        {/* Lead Magnet Section */}
+        <section className="py-20 bg-gradient-feature">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <Card className="border-2 border-primary/50 shadow-large bg-background/95">
+                <CardHeader className="text-center pb-8">
+                  <div className="w-20 h-20 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                    <DownloadIcon className="w-10 h-10" />
+                  </div>
+                  <CardTitle className="text-3xl lg:text-4xl font-bold mb-4">
+                    FREE Amazon Affiliate Starter Kit
+                  </CardTitle>
+                  <CardDescription className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Get our complete toolkit to start earning $1,000+ per month with Amazon affiliate marketing. 
+                    Includes templates, checklists, and proven strategies used by top affiliates.
+                  </CardDescription>
+                </CardHeader>
+                
+                <CardContent className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4 flex items-center">
+                        <CheckIcon className="w-5 h-5 text-success mr-2" />
+                        What's Included:
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          "50+ High-Converting Product Review Templates",
+                          "Amazon Affiliate Niche Research Guide",
+                          "SEO Checklist for Review Content",
+                          "Keyword Research Spreadsheet",
+                          "Traffic Generation Strategies Guide",
+                          "Commission Rate Comparison Chart",
+                          "Legal Compliance Checklist"
+                        ].map((item, index) => (
+                          <li key={index} className="flex items-center">
+                            <CheckIcon className="w-4 h-4 text-success mr-2 flex-shrink-0" />
+                            <span className="text-sm">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="space-y-6">
+                      <div className="bg-gradient-hero/10 p-6 rounded-lg border border-primary/20">
+                        <h4 className="font-semibold text-lg mb-2">Valued at $297</h4>
+                        <p className="text-muted-foreground mb-4">
+                          Get instant access to the same resources our $50K/month affiliates use.
+                        </p>
+                        <div className="space-y-4">
+                          <input
+                            type="text"
+                            placeholder="Enter your name"
+                            className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                          />
+                          <input
+                            type="email"
+                            placeholder="Enter your email address"
+                            className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                          />
+                          <Button variant="cta" size="lg" className="w-full">
+                            <DownloadIcon className="w-5 h-5 mr-2" />
+                            Get FREE Starter Kit Now
+                          </Button>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-4 text-center">
+                          No spam, ever. Unsubscribe anytime. Your email is safe with us.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center pt-6 border-t border-border">
+                    <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
+                      <div className="flex items-center">
+                        <MailIcon className="w-4 h-4 text-success mr-1" />
+                        Instant Download
+                      </div>
+                      <div className="flex items-center">
+                        <ShieldCheckIcon className="w-4 h-4 text-success mr-1" />
+                        100% Free
+                      </div>
+                      <div className="flex items-center">
+                        <UsersIcon className="w-4 h-4 text-primary mr-1" />
+                        10,000+ Downloaded
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
 
         {/* Final CTA Section */}
         <section className="py-20 bg-gradient-hero text-white">
