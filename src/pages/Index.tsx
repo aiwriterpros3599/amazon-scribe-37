@@ -7,6 +7,8 @@ import { CheckIcon, StarIcon, ArrowRightIcon, RocketIcon, ZapIcon, ShieldCheckIc
 import heroImage from "@/assets/hero-amazon-ai.jpg";
 import featuresImage from "@/assets/features-showcase.jpg";
 import successImage from "@/assets/success-metrics.jpg";
+import Logo from "@/components/Logo";
+import FounderBio from "@/components/FounderBio";
 
 const Index = () => {
   const [selectedPlan, setSelectedPlan] = useState("pro");
@@ -43,21 +45,16 @@ const Index = () => {
         {/* Navigation Header */}
         <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center">
-                <BrainCircuitIcon className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-bold text-xl">AI Affiliate Pro</span>
-              <Badge variant="secondary" className="ml-2">Chrome Extension</Badge>
-            </div>
+            <Logo />
             <nav className="hidden md:flex items-center space-x-6">
               <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
               <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
+              <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a>
               <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
               <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">Reviews</a>
               <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
             </nav>
-            <Button variant="hero" size="lg">Get Started Free</Button>
+            <Button variant="default" size="lg">Get Started Free</Button>
           </div>
         </header>
 
@@ -74,7 +71,7 @@ const Index = () => {
                   </Badge>
                   <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                     Generate High-Converting{" "}
-                    <span className="text-amazon">Amazon Product Reviews</span>{" "}
+                    <span className="text-primary">Amazon Product Reviews</span>{" "}
                     in Seconds with AI
                   </h1>
                   <p className="text-xl lg:text-2xl text-white/90 leading-relaxed">
@@ -101,7 +98,7 @@ const Index = () => {
                     <p className="text-sm">No Monthly Fees</p>
                   </div>
                   <div className="text-center">
-                    <ZapIcon className="w-6 h-6 text-amazon mx-auto mb-2" />
+                    <ZapIcon className="w-6 h-6 text-primary mx-auto mb-2" />
                     <p className="text-sm">30-Second Setup</p>
                   </div>
                   <div className="text-center">
@@ -109,7 +106,7 @@ const Index = () => {
                     <p className="text-sm">30-Day Guarantee</p>
                   </div>
                   <div className="text-center">
-                    <UsersIcon className="w-6 h-6 text-amazon mx-auto mb-2" />
+                    <UsersIcon className="w-6 h-6 text-primary mx-auto mb-2" />
                     <p className="text-sm">50,000+ Users</p>
                   </div>
                 </div>
@@ -577,7 +574,7 @@ const Index = () => {
                   Secure Payment
                 </div>
                 <div className="flex items-center">
-                  <ZapIcon className="w-5 h-5 text-amazon mr-2" />
+                  <ZapIcon className="w-5 h-5 text-primary mr-2" />
                   30-Day Money Back Guarantee
                 </div>
                 <div className="flex items-center">
@@ -601,7 +598,7 @@ const Index = () => {
               </h2>
               <div className="flex items-center justify-center space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} className="w-6 h-6 fill-amazon text-amazon" />
+                  <StarIcon key={i} className="w-6 h-6 fill-primary text-primary" />
                 ))}
                 <span className="ml-2 text-xl font-semibold">4.9/5 Average Rating</span>
               </div>
@@ -669,7 +666,7 @@ const Index = () => {
                         <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                         <div className="flex items-center mt-1">
                           {[...Array(testimonial.rating)].map((_, i) => (
-                            <StarIcon key={i} className="w-4 h-4 fill-amazon text-amazon" />
+                            <StarIcon key={i} className="w-4 h-4 fill-primary text-primary" />
                           ))}
                         </div>
                       </div>
@@ -749,6 +746,9 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Founder Bio Section */}
+        <FounderBio />
+
         {/* Final CTA Section */}
         <section className="py-20 bg-gradient-hero text-white">
           <div className="container mx-auto px-4 text-center">
@@ -786,12 +786,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-4 gap-8">
               <div className="space-y-4">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center">
-                    <BrainCircuitIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="font-bold text-xl">AI Affiliate Pro</span>
-                </div>
+                <Logo />
                 <p className="text-muted-foreground">
                   The #1 Chrome extension for Amazon product review generation. 
                   Transform your affiliate marketing with AI.
@@ -813,7 +808,6 @@ const Index = () => {
                 <ul className="space-y-2 text-muted-foreground">
                   <li><a href="/support" className="hover:text-foreground transition-colors">Help Center</a></li>
                   <li><a href="/contact" className="hover:text-foreground transition-colors">Contact Us</a></li>
-                  <li><a href="/tutorials" className="hover:text-foreground transition-colors">Video Tutorials</a></li>
                   <li><a href="/api" className="hover:text-foreground transition-colors">API Setup Guide</a></li>
                 </ul>
               </div>
@@ -824,7 +818,6 @@ const Index = () => {
                   <li><a href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
                   <li><a href="/terms" className="hover:text-foreground transition-colors">Terms of Service</a></li>
                   <li><a href="/refund" className="hover:text-foreground transition-colors">Refund Policy</a></li>
-                  <li><a href="/affiliate" className="hover:text-foreground transition-colors">Affiliate Program</a></li>
                 </ul>
               </div>
             </div>

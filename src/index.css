@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,35 +18,39 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary Amazon/AI brand colors */
-    --primary: 215 100% 50%;
+    /* Primary brand colors - Blue theme */
+    --primary: 221 75% 30%; /* #0c3392 */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 215 100% 65%;
+    --primary-glow: 225 68% 38%; /* #1f46a4 */
     
-    /* Amazon orange accent */
-    --amazon: 25 100% 55%;
-    --amazon-foreground: 0 0% 100%;
+    /* Light blue accents */
+    --secondary-blue: 218 41% 63%; /* #839cc2 */
+    --secondary-blue-light: 220 45% 65%; /* #7c94cc */
+    
+    /* Gray neutrals */
+    --neutral-light: 225 20% 85%; /* #d4d8e3 */
+    --neutral-dark: 215 21% 45%; /* #5b6e88 */
     
     /* Success green for conversions */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     --success-glow: 142 76% 50%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 225 20% 85%; /* Using neutral-light */
+    --secondary-foreground: 215 21% 45%; /* Using neutral-dark */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 225 20% 85%;
+    --muted-foreground: 215 21% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 218 41% 63%; /* Using secondary-blue */
+    --accent-foreground: 221 75% 30%; /* Using primary */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 225 20% 85%;
+    --input: 225 20% 85%;
+    --ring: 221 75% 30%;
     
     /* Gradients for hero sections */
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
@@ -65,19 +70,12 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -91,12 +89,15 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 215 100% 60%;
+    --primary: 225 68% 45%; /* Lighter blue for dark mode */
     --primary-foreground: 222.2 47.4% 11.2%;
-    --primary-glow: 215 100% 75%;
+    --primary-glow: 220 45% 70%;
 
-    --amazon: 25 100% 60%;
-    --amazon-foreground: 222.2 47.4% 11.2%;
+    --secondary-blue: 218 41% 50%;
+    --secondary-blue-light: 220 45% 55%;
+    
+    --neutral-light: 225 20% 25%;
+    --neutral-dark: 215 21% 65%;
     
     --success: 142 76% 45%;
     --success-foreground: 222.2 47.4% 11.2%;
