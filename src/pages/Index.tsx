@@ -34,7 +34,7 @@ const Index = () => {
 
   return (
     <>
-      {/* SEO Meta Tags - Would be handled by Helmet in a real app */}
+      {/* SEO Meta Tags */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -45,97 +45,138 @@ const Index = () => {
         <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <Logo />
-            <nav className="hidden md:flex items-center space-x-6">
-              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
-              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
-              <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a>
-              <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
-              <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">Reviews</a>
-              <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Features</a>
+              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors font-medium">How It Works</a>
+              <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Pricing</a>
+              <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Reviews</a>
+              <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors font-medium">FAQ</a>
             </nav>
-            <Button variant="default" size="lg">Get Started Free</Button>
+            <Button variant="default" size="lg" className="font-semibold">
+              Get Started Free
+            </Button>
           </div>
         </header>
 
-        {/* Hero Section - SEO Optimized */}
-        <section className="relative overflow-hidden bg-gradient-hero text-white py-20 lg:py-32">
+        {/* Hero Section - Enhanced Design */}
+        <section className="relative overflow-hidden bg-gradient-hero text-white">
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8 animate-slide-up">
-                <div className="space-y-4">
-                  <Badge className="bg-success text-success-foreground">
-                    <TrendingUpIcon className="w-4 h-4 mr-1" />
-                    #1 Amazon Product Review Generator
+          <div className="container mx-auto px-4 py-24 lg:py-32 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-10 animate-slide-up">
+                {/* Trust Badge */}
+                <div className="flex items-center gap-4 flex-wrap">
+                  <Badge className="bg-success/90 text-white border-success/30 px-4 py-2">
+                    <TrendingUpIcon className="w-4 h-4 mr-2" />
+                    #1 Amazon Review Generator
                   </Badge>
-                  <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+                  <div className="flex items-center gap-1 text-white/90">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                    <span className="ml-2 text-sm font-medium">4.9/5 (10,000+ reviews)</span>
+                  </div>
+                </div>
+
+                {/* Main Headline */}
+                <div className="space-y-6">
+                  <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                     Generate High-Converting{" "}
-                    <span className="text-primary">Amazon Product Reviews</span>{" "}
-                    in Seconds with AI
+                    <span className="text-primary-foreground bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                      Amazon Reviews
+                    </span>{" "}
+                    in Seconds
                   </h1>
-                  <p className="text-xl lg:text-2xl text-white/90 leading-relaxed">
-                    The most powerful Chrome extension for Amazon affiliates. Create professional, 
-                    SEO-optimized product reviews, comparisons, and buying guides automatically. 
-                    Join 50,000+ successful affiliates earning more with AI.
+                  <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-2xl">
+                    The most powerful AI Chrome extension for Amazon affiliates. Create professional, 
+                    SEO-optimized product reviews that convert visitors into buyers automatically.
                   </p>
                 </div>
                 
+                {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button variant="cta" size="xxl" className="flex-1 sm:flex-none">
-                    <RocketIcon className="w-5 h-5 mr-2" />
+                  <Button variant="default" size="xxl" className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-4">
+                    <RocketIcon className="w-6 h-6 mr-3" />
                     Start Creating Reviews Now
                   </Button>
-                  <Button variant="outline" size="xl" className="border-white/30 text-white hover:bg-white/10">
+                  <Button variant="outline" size="xl" className="border-white/40 text-white hover:bg-white/10 font-medium">
                     <SearchIcon className="w-5 h-5 mr-2" />
-                    See How It Works
+                    Watch Demo
                   </Button>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/20">
-                  <div className="text-center">
-                    <CheckIcon className="w-6 h-6 text-success mx-auto mb-2" />
-                    <p className="text-sm">No Monthly Fees</p>
-                  </div>
-                  <div className="text-center">
-                    <ZapIcon className="w-6 h-6 text-primary mx-auto mb-2" />
-                    <p className="text-sm">30-Second Setup</p>
-                  </div>
-                  <div className="text-center">
-                    <ShieldCheckIcon className="w-6 h-6 text-success mx-auto mb-2" />
-                    <p className="text-sm">30-Day Guarantee</p>
-                  </div>
-                  <div className="text-center">
-                    <UsersIcon className="w-6 h-6 text-primary mx-auto mb-2" />
-                    <p className="text-sm">50,000+ Users</p>
-                  </div>
+                {/* Social Proof */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-8 border-t border-white/20">
+                  {[
+                    { icon: CheckIcon, text: "No Monthly Fees", color: "text-green-400" },
+                    { icon: ZapIcon, text: "30-Second Setup", color: "text-blue-400" },
+                    { icon: ShieldCheckIcon, text: "30-Day Guarantee", color: "text-green-400" },
+                    { icon: UsersIcon, text: "50,000+ Users", color: "text-purple-400" }
+                  ].map((item, index) => (
+                    <div key={index} className="text-center">
+                      <item.icon className={`w-7 h-7 ${item.color} mx-auto mb-3`} />
+                      <p className="text-sm font-medium">{item.text}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
               
-              <div className="relative animate-float">
-                <img
-                  src={heroImage}
-                  alt="AI Affiliate Pro Chrome Extension Dashboard showing Amazon product review generation"
-                  className="rounded-2xl shadow-2xl border border-white/20"
-                  loading="eager"
-                />
-                <div className="absolute -top-4 -right-4 bg-success text-success-foreground rounded-full p-3 shadow-lg animate-pulse-glow">
-                  <TrendingUpIcon className="w-6 h-6" />
+              {/* Hero Image */}
+              <div className="relative">
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl border border-white/20">
+                  <img
+                    src={heroImage}
+                    alt="AI Affiliate Pro Chrome Extension Dashboard"
+                    className="w-full h-auto transform hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                {/* Floating elements */}
+                <div className="absolute -top-6 -right-6 bg-success text-white rounded-2xl p-4 shadow-xl animate-pulse">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">10x</div>
+                    <div className="text-sm">Faster</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-6 -left-6 bg-primary text-white rounded-2xl p-4 shadow-xl">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">$50K+</div>
+                    <div className="text-sm">Monthly Revenue</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* How It Works Section - SEO Optimized */}
-        <section id="how-it-works" className="py-20 bg-background">
+        {/* Trust Section */}
+        <section className="py-16 bg-background border-b border-border">
           <div className="container mx-auto px-4">
-            <div className="text-center space-y-4 mb-16">
-              <h2 className="text-3xl lg:text-5xl font-bold">
-                How to Generate Amazon Product Reviews Automatically
+            <div className="text-center space-y-8">
+              <p className="text-muted-foreground font-medium">Trusted by 50,000+ Amazon Affiliates Worldwide</p>
+              <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
+                {/* Company logos placeholder - you can replace with actual logos */}
+                {[1,2,3,4,5].map((i) => (
+                  <div key={i} className="w-24 h-12 bg-muted rounded flex items-center justify-center">
+                    <span className="text-xs font-medium">Logo {i}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section - Enhanced */}
+        <section id="how-it-works" className="py-24 bg-gradient-feature">
+          <div className="container mx-auto px-4">
+            <div className="text-center space-y-6 mb-20">
+              <h2 className="text-4xl lg:text-6xl font-bold">
+                How It Works
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Our AI Amazon review writer creates professional content in 4 simple steps. 
-                Works on all Amazon domains worldwide.
+                Create professional Amazon product reviews in 4 simple steps. 
+                Our AI does the heavy lifting while you focus on earning commissions.
               </p>
             </div>
 
@@ -143,85 +184,144 @@ const Index = () => {
               {[
                 {
                   step: "01",
-                  title: "Install Chrome Extension",
-                  description: "Add AI Affiliate Pro to Chrome in 30 seconds. Works on all Amazon domains including .com, .co.uk, .de, .fr, .es, .it, .in, .ca, .com.mx",
-                  icon: <GlobeIcon className="w-8 h-8" />
+                  title: "Install Extension",
+                  description: "Add to Chrome in 30 seconds. Works on all Amazon domains worldwide including .com, .co.uk, .de, and more.",
+                  icon: <GlobeIcon className="w-10 h-10" />,
+                  color: "from-blue-500 to-cyan-500"
                 },
                 {
                   step: "02", 
-                  title: "Visit Amazon Product Page",
-                  description: "Browse any Amazon product page. Our AI automatically detects product information, specifications, and customer reviews",
-                  icon: <SearchIcon className="w-8 h-8" />
+                  title: "Visit Product Page",
+                  description: "Browse any Amazon product. Our AI automatically detects and analyzes product information and customer reviews.",
+                  icon: <SearchIcon className="w-10 h-10" />,
+                  color: "from-purple-500 to-pink-500"
                 },
                 {
                   step: "03",
-                  title: "Click Extension Icon",
-                  description: "One click generates professional product reviews, comparisons, buying guides, and SEO-optimized content instantly",
-                  icon: <BrainCircuitIcon className="w-8 h-8" />
+                  title: "Generate Content",
+                  description: "One click creates professional reviews, comparisons, buying guides, and SEO-optimized content instantly.",
+                  icon: <BrainCircuitIcon className="w-10 h-10" />,
+                  color: "from-green-500 to-emerald-500"
                 },
                 {
                   step: "04",
                   title: "Edit & Publish",
-                  description: "Customize content in our built-in SEO editor, add affiliate links, and publish to your website or blog",
-                  icon: <EditIcon className="w-8 h-8" />
+                  description: "Customize in our built-in editor, add affiliate links, and publish to your website for instant commissions.",
+                  icon: <EditIcon className="w-10 h-10" />,
+                  color: "from-orange-500 to-red-500"
                 }
               ].map((item, index) => (
-                <Card key={index} className="relative border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-large group">
-                  <CardHeader className="text-center pb-4">
-                    <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4 text-white group-hover:scale-110 transition-transform">
+                <Card key={index} className="relative border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl group bg-background/50 backdrop-blur-sm">
+                  <CardHeader className="text-center pb-6">
+                    <div className={`w-20 h-20 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-6 text-white group-hover:scale-110 transition-transform shadow-lg`}>
                       {item.icon}
                     </div>
-                    <div className="text-4xl font-bold text-primary mb-2">{item.step}</div>
-                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <div className="text-5xl font-bold text-primary/20 mb-2">{item.step}</div>
+                    <CardTitle className="text-2xl font-bold">{item.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground text-center">{item.description}</p>
+                    <p className="text-muted-foreground text-center leading-relaxed">{item.description}</p>
                   </CardContent>
+                  {/* Connection line */}
+                  {index < 3 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-transparent"></div>
+                  )}
                 </Card>
               ))}
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-16">
+              <Button variant="cta" size="xxl" className="font-bold text-lg px-10 py-5">
+                <RocketIcon className="w-6 h-6 mr-3" />
+                Get Started in 30 Seconds
+              </Button>
             </div>
           </div>
         </section>
 
-        {/* Supported Amazon Domains Section */}
-        <section className="py-16 bg-gradient-feature">
+        {/* Features Section - Enhanced */}
+        <section id="features" className="py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl font-bold">
-                Works on All Amazon Domains Worldwide
+            <div className="text-center space-y-6 mb-20">
+              <h2 className="text-4xl lg:text-6xl font-bold">
+                Everything You Need to Dominate{" "}
+                <span className="text-primary">Amazon Affiliate Marketing</span>
               </h2>
-              <p className="text-xl text-muted-foreground">
-                Generate Amazon affiliate content for any country or region
+              <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+                Advanced AI tools designed to maximize your affiliate revenue and streamline content creation. 
+                No technical skills required - just install and start earning.
               </p>
             </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {[
-                { domain: "amazon.com", country: "United States", flag: "🇺🇸" },
-                { domain: "amazon.co.uk", country: "United Kingdom", flag: "🇬🇧" },
-                { domain: "amazon.de", country: "Germany", flag: "🇩🇪" },
-                { domain: "amazon.fr", country: "France", flag: "🇫🇷" },
-                { domain: "amazon.es", country: "Spain", flag: "🇪🇸" },
-                { domain: "amazon.it", country: "Italy", flag: "🇮🇹" },
-                { domain: "amazon.in", country: "India", flag: "🇮🇳" },
-                { domain: "amazon.ca", country: "Canada", flag: "🇨🇦" },
-                { domain: "amazon.com.mx", country: "Mexico", flag: "🇲🇽" },
-                { domain: "amazon.com.br", country: "Brazil", flag: "🇧🇷" },
-                { domain: "amazon.com.au", country: "Australia", flag: "🇦🇺" },
-                { domain: "amazon.jp", country: "Japan", flag: "🇯🇵" }
-              ].map((item, index) => (
-                <Card key={index} className="text-center p-4 hover:shadow-medium transition-all">
-                  <div className="text-3xl mb-2">{item.flag}</div>
-                  <div className="font-semibold text-sm">{item.domain}</div>
-                  <div className="text-xs text-muted-foreground">{item.country}</div>
-                </Card>
-              ))}
+
+            <div className="grid lg:grid-cols-2 gap-20 items-center mb-20">
+              <div className="space-y-10">
+                {[
+                  {
+                    title: "Advanced AI Content Generation",
+                    description: "Generate product reviews, comparisons, and buying guides using cutting-edge GPT-4 models. Create content that converts in seconds with human-like quality and persuasive copy.",
+                    icon: <BrainCircuitIcon className="w-10 h-10" />,
+                    color: "from-purple-500 to-indigo-500"
+                  },
+                  {
+                    title: "SEO Optimization Suite", 
+                    description: "Automatic meta titles, descriptions, schema markup, and keyword optimization. Rank higher on Google and get more organic traffic to your affiliate links.",
+                    icon: <SearchIcon className="w-10 h-10" />,
+                    color: "from-blue-500 to-cyan-500"
+                  },
+                  {
+                    title: "Smart Image Management",
+                    description: "Optimal image dimensions, automatic alt text generation, and AI-powered image optimization for better conversions and faster loading times.",
+                    icon: <ImageIcon className="w-10 h-10" />,
+                    color: "from-green-500 to-emerald-500"
+                  },
+                  {
+                    title: "Universal Amazon Integration",
+                    description: "Automatically detects product data from any Amazon domain. Seamless affiliate link insertion with commission tracking and analytics.",
+                    icon: <GlobeIcon className="w-10 h-10" />,
+                    color: "from-orange-500 to-red-500"
+                  }
+                ].map((feature, index) => (
+                  <div key={index} className="flex space-x-6 group">
+                    <div className={`w-20 h-20 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
+                      {feature.icon}
+                    </div>
+                    <div className="space-y-3">
+                      <h3 className="text-2xl font-bold">{feature.title}</h3>
+                      <p className="text-muted-foreground text-lg leading-relaxed">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="relative">
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  <img
+                    src={featuresImage}
+                    alt="AI Affiliate Pro features showcase"
+                    className="w-full h-auto transform hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                <div className="absolute -bottom-8 -right-8 bg-success text-white rounded-2xl p-6 shadow-xl">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold">10x</div>
+                    <div className="text-sm font-medium">Faster Content</div>
+                  </div>
+                </div>
+                <div className="absolute -top-8 -left-8 bg-primary text-white rounded-2xl p-6 shadow-xl">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold">AI</div>
+                    <div className="text-sm font-medium">Powered</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Content Types Generated Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-gradient-feature">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl lg:text-5xl font-bold">
@@ -295,74 +395,153 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="py-20 bg-gradient-feature">
+        {/* Pricing Section - Enhanced */}
+        <section id="pricing" className="py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="text-center space-y-4 mb-16">
-              <h2 className="text-3xl lg:text-5xl font-bold">
-                Everything You Need to Dominate Amazon Affiliate Marketing
+            <div className="text-center space-y-6 mb-20">
+              <h2 className="text-4xl lg:text-6xl font-bold">
+                Choose Your Success Plan
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Advanced AI tools designed to maximize your affiliate revenue and streamline content creation
+                One-time payment. No monthly fees. Lifetime access. Start earning more today with our proven system.
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                {[
-                  {
-                    title: "Advanced AI Content Generation",
-                    description: "Generate product reviews, comparisons, and buying guides using cutting-edge GPT-4 models. Create content that converts in seconds with human-like quality.",
-                    icon: <BrainCircuitIcon className="w-8 h-8" />
-                  },
-                  {
-                    title: "SEO Optimization Suite", 
-                    description: "Automatic meta titles, descriptions, schema markup, and keyword optimization. Rank higher on Google and get more organic traffic.",
-                    icon: <SearchIcon className="w-8 h-8" />
-                  },
-                  {
-                    title: "Smart Image Management",
-                    description: "Optimal image dimensions, automatic alt text generation, and AI-powered image optimization for better conversions.",
-                    icon: <ImageIcon className="w-8 h-8" />
-                  },
-                  {
-                    title: "Universal Amazon Integration",
-                    description: "Automatically detects product data from any Amazon domain. Seamless affiliate link insertion with commission tracking.",
-                    icon: <GlobeIcon className="w-8 h-8" />
-                  }
-                ].map((feature, index) => (
-                  <div key={index} className="flex space-x-4 group">
-                    <div className="w-16 h-16 bg-gradient-hero rounded-lg flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
-                      {feature.icon}
+            <div className="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+              {[
+                {
+                  name: "Basic Starter",
+                  price: "$47",
+                  popular: false,
+                  description: "Perfect for getting started with Amazon affiliate content",
+                  features: [
+                    "Core content generation features",
+                    "5,000 words per month",
+                    "Basic editor features", 
+                    "GPT-3.5 Turbo access",
+                    "Amazon product detection",
+                    "Basic affiliate link insertion",
+                    "Email support"
+                  ],
+                  color: "border-muted"
+                },
+                {
+                  name: "Pro Growth",
+                  price: "$97", 
+                  popular: true,
+                  description: "Most popular plan for serious affiliate marketers",
+                  features: [
+                    "Everything in Basic",
+                    "25,000 words per month",
+                    "Advanced editor with version control",
+                    "GPT-4 access included",
+                    "SEO features & keyword integration", 
+                    "Content repurposing tools",
+                    "Priority email support",
+                    "Bonus: Affiliate Marketing Course"
+                  ],
+                  color: "border-primary shadow-xl scale-105"
+                },
+                {
+                  name: "Elite Agency",
+                  price: "$197",
+                  popular: false,
+                  description: "For agencies and high-volume content creators",
+                  features: [
+                    "Everything in Pro",
+                    "Unlimited word count", 
+                    "All advanced editor & SEO features",
+                    "Full content repurposing suite",
+                    "Automated publishing integrations",
+                    "White-label rights",
+                    "Priority support & 1-on-1 onboarding",
+                    "Bonus: Done-for-you templates",
+                    "Bonus: Reseller license"
+                  ],
+                  color: "border-muted"
+                }
+              ].map((plan, index) => (
+                <Card 
+                  key={index} 
+                  className={`relative border-2 transition-all duration-300 hover:shadow-2xl bg-background/50 backdrop-blur-sm ${plan.color}`}
+                >
+                  {plan.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <Badge className="bg-gradient-hero text-white px-6 py-2 text-sm font-bold shadow-lg">
+                        ⭐ Most Popular
+                      </Badge>
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-semibold">{feature.title}</h3>
-                      <p className="text-muted-foreground">{feature.description}</p>
+                  )}
+                  
+                  <CardHeader className="text-center pb-8 pt-8">
+                    <h3 className="text-3xl font-bold mb-4">{plan.name}</h3>
+                    <div className="mb-6">
+                      <span className="text-5xl font-bold text-primary">{plan.price}</span>
+                      <span className="text-muted-foreground text-lg"> one-time</span>
                     </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="relative">
-                <img
-                  src={featuresImage}
-                  alt="AI Affiliate Pro features showcase - before and after content generation"
-                  className="rounded-2xl shadow-2xl"
-                  loading="lazy"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-success text-success-foreground rounded-xl p-4 shadow-lg">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">10x</div>
-                    <div className="text-sm">Faster Content</div>
-                  </div>
+                    <p className="text-muted-foreground text-lg leading-relaxed">{plan.description}</p>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-6">
+                    <ul className="space-y-4">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckIcon className="w-5 h-5 text-success mr-3 flex-shrink-0 mt-1" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <Button 
+                      variant={plan.popular ? "cta" : "default"}
+                      size="xl" 
+                      className="w-full font-bold text-lg py-4"
+                      onClick={() => setSelectedPlan(plan.name.toLowerCase().replace(' ', '-'))}
+                    >
+                      {plan.popular ? (
+                        <>
+                          <RocketIcon className="w-5 h-5 mr-2" />
+                          Get Pro Plan Now
+                        </>
+                      ) : (
+                        <>Get {plan.name.split(' ')[0]} Plan</>
+                      )}
+                    </Button>
+
+                    {plan.popular && (
+                      <div className="text-center pt-4">
+                        <p className="text-sm text-success font-medium">⚡ Limited Time: Save $50</p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center mt-16 space-y-6">
+              <div className="flex items-center justify-center space-x-8 text-muted-foreground">
+                <div className="flex items-center">
+                  <ShieldCheckIcon className="w-6 h-6 text-success mr-2" />
+                  <span className="font-medium">Secure Payment</span>
+                </div>
+                <div className="flex items-center">
+                  <ZapIcon className="w-6 h-6 text-primary mr-2" />
+                  <span className="font-medium">30-Day Money Back Guarantee</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckIcon className="w-6 h-6 text-success mr-2" />
+                  <span className="font-medium">Instant Access</span>
                 </div>
               </div>
+              <p className="text-muted-foreground">
+                All plans include lifetime updates and new feature access
+              </p>
             </div>
           </div>
         </section>
 
         {/* Success Stories Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-gradient-feature">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl lg:text-5xl font-bold">
@@ -443,146 +622,6 @@ const Index = () => {
               />
               <p className="text-sm text-muted-foreground mt-4">
                 Real dashboard data from AI Affiliate Pro users showing revenue growth
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section id="pricing" className="py-20 bg-gradient-feature">
-          <div className="container mx-auto px-4">
-            <div className="text-center space-y-4 mb-16">
-              <h2 className="text-3xl lg:text-5xl font-bold">
-                Choose Your Amazon Affiliate Success Plan
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                One-time payment. No monthly fees. Lifetime access. Start earning more today.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  name: "Basic Starter",
-                  price: "$47",
-                  popular: false,
-                  description: "Perfect for getting started with Amazon affiliate content",
-                  features: [
-                    "Core content generation features",
-                    "5,000 words per month",
-                    "Basic editor features", 
-                    "GPT-3.5 Turbo access",
-                    "Amazon product detection",
-                    "Basic affiliate link insertion",
-                    "Email support"
-                  ]
-                },
-                {
-                  name: "Pro Growth",
-                  price: "$97", 
-                  popular: true,
-                  description: "Most popular plan for serious affiliate marketers",
-                  features: [
-                    "Everything in Basic",
-                    "25,000 words per month",
-                    "Advanced editor with version control",
-                    "GPT-4 access included",
-                    "SEO features & keyword integration", 
-                    "Content repurposing tools",
-                    "Priority email support",
-                    "Bonus: Affiliate Marketing Course"
-                  ]
-                },
-                {
-                  name: "Elite Agency",
-                  price: "$197",
-                  popular: false,
-                  description: "For agencies and high-volume content creators",
-                  features: [
-                    "Everything in Pro",
-                    "Unlimited word count", 
-                    "All advanced editor & SEO features",
-                    "Full content repurposing suite",
-                    "Automated publishing integrations",
-                    "White-label rights",
-                    "Priority support & 1-on-1 onboarding",
-                    "Bonus: Done-for-you templates",
-                    "Bonus: Reseller license"
-                  ]
-                }
-              ].map((plan, index) => (
-                <Card 
-                  key={index} 
-                  className={`relative border-2 transition-all duration-300 hover:shadow-large ${
-                    plan.popular 
-                      ? 'border-primary shadow-glow scale-105' 
-                      : 'border-border hover:border-primary/50'
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <Badge className="bg-gradient-hero text-white px-6 py-2">
-                        Most Popular
-                      </Badge>
-                    </div>
-                  )}
-                  
-                  <CardHeader className="text-center pb-4">
-                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                    <div className="mb-4">
-                      <span className="text-4xl font-bold text-primary">{plan.price}</span>
-                      <span className="text-muted-foreground"> one-time</span>
-                    </div>
-                    <p className="text-muted-foreground">{plan.description}</p>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-4">
-                    <ul className="space-y-3">
-                      {plan.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <CheckIcon className="w-5 h-5 text-success mr-3 flex-shrink-0 mt-0.5" />
-                          <span className="text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <Button 
-                      variant={plan.popular ? "cta" : "default"}
-                      size="lg" 
-                      className="w-full"
-                      onClick={() => setSelectedPlan(plan.name.toLowerCase().replace(' ', '-'))}
-                    >
-                      {plan.popular ? (
-                        <>
-                          <RocketIcon className="w-5 h-5 mr-2" />
-                          Get Pro Plan
-                        </>
-                      ) : (
-                        <>Get {plan.name.split(' ')[0]} Plan</>
-                      )}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="text-center mt-12 space-y-4">
-              <div className="flex items-center justify-center space-x-6 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <ShieldCheckIcon className="w-5 h-5 text-success mr-2" />
-                  Secure Payment
-                </div>
-                <div className="flex items-center">
-                  <ZapIcon className="w-5 h-5 text-primary mr-2" />
-                  30-Day Money Back Guarantee
-                </div>
-                <div className="flex items-center">
-                  <CheckIcon className="w-5 h-5 text-success mr-2" />
-                  Instant Access
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                All plans include lifetime updates and new feature access
               </p>
             </div>
           </div>
@@ -746,31 +785,32 @@ const Index = () => {
         </section>
 
         {/* Lead Magnet Section */}
-        <section className="py-20 bg-gradient-feature">
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Card className="border-2 border-primary/50 shadow-large bg-background/95">
-                <CardHeader className="text-center pb-8">
-                  <div className="w-20 h-20 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-6 text-white">
-                    <DownloadIcon className="w-10 h-10" />
+            <div className="max-w-5xl mx-auto">
+              <Card className="border-2 border-primary/20 shadow-2xl bg-gradient-to-br from-background via-background to-primary/5 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50"></div>
+                <CardHeader className="text-center pb-8 relative z-10">
+                  <div className="w-24 h-24 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-8 text-white shadow-2xl">
+                    <DownloadIcon className="w-12 h-12" />
                   </div>
-                  <CardTitle className="text-3xl lg:text-4xl font-bold mb-4">
+                  <CardTitle className="text-4xl lg:text-5xl font-bold mb-6">
                     FREE Amazon Affiliate Starter Kit
                   </CardTitle>
-                  <CardDescription className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  <CardDescription className="text-xl text-muted-foreground max-w-3xl mx-auto">
                     Get our complete toolkit to start earning $1,000+ per month with Amazon affiliate marketing. 
                     Includes templates, checklists, and proven strategies used by top affiliates.
                   </CardDescription>
                 </CardHeader>
                 
-                <CardContent className="space-y-8">
-                  <div className="grid md:grid-cols-2 gap-8">
+                <CardContent className="space-y-10 relative z-10">
+                  <div className="grid md:grid-cols-2 gap-12">
                     <div>
-                      <h3 className="text-xl font-semibold mb-4 flex items-center">
-                        <CheckIcon className="w-5 h-5 text-success mr-2" />
-                        What's Included:
+                      <h3 className="text-2xl font-bold mb-6 flex items-center">
+                        <CheckIcon className="w-6 h-6 text-success mr-3" />
+                        What's Inside:
                       </h3>
-                      <ul className="space-y-3">
+                      <ul className="space-y-4">
                         {[
                           "50+ High-Converting Product Review Templates",
                           "Amazon Affiliate Niche Research Guide",
@@ -781,55 +821,59 @@ const Index = () => {
                           "Legal Compliance Checklist"
                         ].map((item, index) => (
                           <li key={index} className="flex items-center">
-                            <CheckIcon className="w-4 h-4 text-success mr-2 flex-shrink-0" />
-                            <span className="text-sm">{item}</span>
+                            <CheckIcon className="w-5 h-5 text-success mr-3 flex-shrink-0" />
+                            <span>{item}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     
                     <div className="space-y-6">
-                      <div className="bg-gradient-hero/10 p-6 rounded-lg border border-primary/20">
-                        <h4 className="font-semibold text-lg mb-2">Valued at $297</h4>
-                        <p className="text-muted-foreground mb-4">
-                          Get instant access to the same resources our $50K/month affiliates use.
-                        </p>
+                      <div className="bg-gradient-hero/10 p-8 rounded-2xl border border-primary/20 backdrop-blur-sm">
+                        <div className="text-center mb-6">
+                          <h4 className="font-bold text-2xl mb-2">Valued at $297</h4>
+                          <p className="text-muted-foreground">
+                            Get instant access to the same resources our $50K/month affiliates use.
+                          </p>
+                        </div>
+                        
                         <div className="space-y-4">
                           <input
                             type="text"
-                            placeholder="Enter your name"
-                            className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            placeholder="Enter your first name"
+                            className="w-full px-4 py-4 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-lg"
                           />
                           <input
                             type="email"
                             placeholder="Enter your email address"
-                            className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            className="w-full px-4 py-4 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-lg"
                           />
-                          <Button variant="cta" size="lg" className="w-full">
-                            <DownloadIcon className="w-5 h-5 mr-2" />
+                          <Button variant="cta" size="xxl" className="w-full font-bold text-lg py-4">
+                            <DownloadIcon className="w-6 h-6 mr-3" />
                             Get FREE Starter Kit Now
                           </Button>
                         </div>
-                        <p className="text-xs text-muted-foreground mt-4 text-center">
-                          No spam, ever. Unsubscribe anytime. Your email is safe with us.
+                        
+                        <p className="text-xs text-muted-foreground mt-6 text-center">
+                          No spam, ever. Unsubscribe anytime. Your information is 100% secure.
                         </p>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="text-center pt-6 border-t border-border">
-                    <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
+                  <div className="text-center pt-8 border-t border-border">
+                    <div className="flex items-center justify-center space-x-8 text-muted-foreground">
                       <div className="flex items-center">
-                        <MailIcon className="w-4 h-4 text-success mr-1" />
-                        Instant Download
+                        <MailIcon className="w-5 h-5 text-success mr-2" />
+                        <span className="font-medium">Instant Download</span>
                       </div>
                       <div className="flex items-center">
-                        <ShieldCheckIcon className="w-4 h-4 text-success mr-1" />
-                        100% Free
+                        <ShieldCheckIcon className="w-5 h-5 text-success mr-2" />
+                        <span className="font-medium">100% Free</span>
                       </div>
                       <div className="flex items-center">
-                        <UsersIcon className="w-4 h-4 text-primary mr-1" />
-                        10,000+ Downloaded
+                        <UsersIcon className="w-5 h-5 text-primary mr-2" />
+                        <span className="font-medium">10,000+ Downloaded</span>
                       </div>
                     </div>
                   </div>
@@ -840,31 +884,46 @@ const Index = () => {
         </section>
 
         {/* Final CTA Section */}
-        <section className="py-20 bg-gradient-hero text-white">
+        <section className="py-24 bg-gradient-hero text-white">
           <div className="container mx-auto px-4 text-center">
-            <div className="max-w-4xl mx-auto space-y-8">
-              <h2 className="text-3xl lg:text-5xl font-bold">
+            <div className="max-w-5xl mx-auto space-y-10">
+              <h2 className="text-4xl lg:text-6xl font-bold">
                 Ready to 10x Your Amazon Affiliate Revenue?
               </h2>
-              <p className="text-xl lg:text-2xl text-white/90">
+              <p className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto">
                 Join 50,000+ successful affiliates who've transformed their business with AI. 
                 Start generating high-converting product reviews in seconds.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="cta" size="xxl">
-                  <RocketIcon className="w-6 h-6 mr-2" />
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Button variant="default" size="xxl" className="bg-white text-primary hover:bg-white/90 font-bold text-xl px-10 py-5">
+                  <RocketIcon className="w-6 h-6 mr-3" />
                   Get AI Affiliate Pro Now
                 </Button>
-                <Button variant="outline" size="xl" className="border-white/30 text-white hover:bg-white/10">
+                <Button variant="outline" size="xl" className="border-white/30 text-white hover:bg-white/10 font-medium text-lg px-8 py-5">
                   <DollarSignIcon className="w-5 h-5 mr-2" />
                   30-Day Money Back Guarantee
                 </Button>
               </div>
 
-              <div className="text-center pt-8 border-t border-white/20">
-                <p className="text-white/80">
-                  Last Updated: January 2025 • Trusted by 50,000+ Amazon Affiliates Worldwide
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-12 border-t border-white/20 max-w-3xl mx-auto">
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">50,000+</div>
+                  <div className="text-white/80">Happy Users</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">$10M+</div>
+                  <div className="text-white/80">Generated Revenue</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">4.9/5</div>
+                  <div className="text-white/80">User Rating</div>
+                </div>
+              </div>
+
+              <div className="text-center pt-8">
+                <p className="text-white/70">
+                  Last Updated: January 2025 • Trusted Worldwide
                 </p>
               </div>
             </div>
@@ -872,20 +931,26 @@ const Index = () => {
         </section>
 
         {/* Footer */}
-        <footer className="bg-background border-t border-border py-12">
+        <footer className="bg-background border-t border-border py-16">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-8">
-              <div className="space-y-4">
+            <div className="grid md:grid-cols-4 gap-10">
+              <div className="space-y-6">
                 <Logo />
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-lg leading-relaxed">
                   The #1 Chrome extension for Amazon product review generation. 
                   Transform your affiliate marketing with AI.
                 </p>
+                <div className="flex items-center space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon key={i} className="w-5 h-5 fill-primary text-primary" />
+                  ))}
+                  <span className="ml-2 font-semibold">4.9/5 Rating</span>
+                </div>
               </div>
               
               <div>
-                <h3 className="font-semibold mb-4">Product</h3>
-                <ul className="space-y-2 text-muted-foreground">
+                <h3 className="font-bold text-lg mb-6">Product</h3>
+                <ul className="space-y-3 text-muted-foreground">
                   <li><a href="#features" className="hover:text-foreground transition-colors">Features</a></li>
                   <li><a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a></li>
                   <li><a href="#testimonials" className="hover:text-foreground transition-colors">Testimonials</a></li>
@@ -894,8 +959,8 @@ const Index = () => {
               </div>
               
               <div>
-                <h3 className="font-semibold mb-4">Support</h3>
-                <ul className="space-y-2 text-muted-foreground">
+                <h3 className="font-bold text-lg mb-6">Support</h3>
+                <ul className="space-y-3 text-muted-foreground">
                   <li><a href="/support" className="hover:text-foreground transition-colors">Help Center</a></li>
                   <li><a href="/contact" className="hover:text-foreground transition-colors">Contact Us</a></li>
                   <li><a href="/api" className="hover:text-foreground transition-colors">API Setup Guide</a></li>
@@ -903,8 +968,8 @@ const Index = () => {
               </div>
               
               <div>
-                <h3 className="font-semibold mb-4">Legal</h3>
-                <ul className="space-y-2 text-muted-foreground">
+                <h3 className="font-bold text-lg mb-6">Legal</h3>
+                <ul className="space-y-3 text-muted-foreground">
                   <li><a href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
                   <li><a href="/terms" className="hover:text-foreground transition-colors">Terms of Service</a></li>
                   <li><a href="/refund" className="hover:text-foreground transition-colors">Refund Policy</a></li>
@@ -912,7 +977,7 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
+            <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
               <p>© 2025 AI Affiliate Pro. All rights reserved. | Amazon Product Review Generator Chrome Extension</p>
             </div>
           </div>
