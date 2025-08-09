@@ -17,6 +17,9 @@ import HelpCenter from "./pages/HelpCenter";
 import ContactUs from "./pages/ContactUs";
 import FAQ from "./pages/FAQ";
 import AmazonAffiliateGuide from "./pages/blog/AmazonAffiliateGuide";
+import HowToStartAmazonAffiliateMarketing from "./pages/blog/HowToStartAmazonAffiliateMarketing";
+import AmazonAffiliateMarketing from "./pages/blog/category/AmazonAffiliateMarketing";
+import AIContentCreation from "./pages/blog/category/AIContentCreation";
 import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 
@@ -34,6 +37,9 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/amazon-affiliate-marketing-beginners-guide-2025" element={<AmazonAffiliateGuide />} />
+            <Route path="/blog/how-to-start-amazon-affiliate-marketing-2025" element={<HowToStartAmazonAffiliateMarketing />} />
+            <Route path="/blog/category/amazon-affiliate-marketing" element={<AmazonAffiliateMarketing />} />
+            <Route path="/blog/category/ai-content-creation" element={<AIContentCreation />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
