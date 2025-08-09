@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import FAQ from "./pages/FAQ";
 import AmazonAffiliateGuide from "./pages/blog/AmazonAffiliateGuide";
 import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/blog/amazon-affiliate-marketing-beginners-guide-2025" element={<AmazonAffiliateGuide />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ExitIntentPopup />

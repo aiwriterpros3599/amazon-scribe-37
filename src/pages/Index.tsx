@@ -50,7 +50,7 @@ const Index = () => {
               <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors font-medium">How It Works</a>
               <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Pricing</a>
               <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Reviews</a>
-              <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors font-medium">FAQ</a>
+              <a href="/faq" className="text-muted-foreground hover:text-foreground transition-colors font-medium">FAQ</a>
             </nav>
             <Button variant="default" size="lg" className="font-semibold">
               Get Started Free
@@ -410,13 +410,13 @@ const Index = () => {
             <div className="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
               {[
                 {
-                  name: "Basic Starter",
-                  price: "$47",
+                  name: "Free Starter",
+                  price: "Free",
                   popular: false,
                   description: "Perfect for getting started with Amazon affiliate content",
                   features: [
                     "Core content generation features",
-                    "5,000 words per month",
+                    "10 articles per month",
                     "Basic editor features", 
                     "GPT-3.5 Turbo access",
                     "Amazon product detection",
@@ -431,8 +431,8 @@ const Index = () => {
                   popular: true,
                   description: "Most popular plan for serious affiliate marketers",
                   features: [
-                    "Everything in Basic",
-                    "25,000 words per month",
+                    "Everything in Free Starter",
+                    "30 articles per month",
                     "Advanced editor with version control",
                     "GPT-4 access included",
                     "SEO features & keyword integration", 
@@ -449,14 +449,11 @@ const Index = () => {
                   description: "For agencies and high-volume content creators",
                   features: [
                     "Everything in Pro",
-                    "Unlimited word count", 
+                    "Unlimited articles", 
                     "All advanced editor & SEO features",
                     "Full content repurposing suite",
                     "Automated publishing integrations",
-                    "White-label rights",
-                    "Priority support & 1-on-1 onboarding",
-                    "Bonus: Done-for-you templates",
-                    "Bonus: Reseller license"
+                    "Priority support"
                   ],
                   color: "border-muted"
                 }
@@ -477,7 +474,7 @@ const Index = () => {
                     <h3 className="text-3xl font-bold mb-4">{plan.name}</h3>
                     <div className="mb-6">
                       <span className="text-5xl font-bold text-primary">{plan.price}</span>
-                      <span className="text-muted-foreground text-lg"> one-time</span>
+                      {plan.price !== "Free" && <span className="text-muted-foreground text-lg"> one-time</span>}
                     </div>
                     <p className="text-muted-foreground text-lg leading-relaxed">{plan.description}</p>
                   </CardHeader>
@@ -498,7 +495,9 @@ const Index = () => {
                       className="w-full font-bold text-lg py-4"
                       onClick={() => setSelectedPlan(plan.name.toLowerCase().replace(' ', '-'))}
                     >
-                      {plan.popular ? (
+                      {plan.name === "Free Starter" ? (
+                        <>Get Started Free</>
+                      ) : plan.popular ? (
                         <>
                           <RocketIcon className="w-5 h-5 mr-2" />
                           Get Pro Plan Now
@@ -722,7 +721,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* FAQ Section - Shortened */}
         <section id="faq" className="py-20 bg-gradient-feature">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-16">
@@ -730,7 +729,7 @@ const Index = () => {
                 Frequently Asked Questions
               </h2>
               <p className="text-xl text-muted-foreground">
-                Everything you need to know about the best Chrome extension for Amazon affiliates
+                Quick answers to common questions about AI Affiliate Pro
               </p>
             </div>
 
@@ -739,35 +738,19 @@ const Index = () => {
                 {[
                   {
                     question: "How does the AI Amazon product review generator work?",
-                    answer: "Our Chrome extension uses advanced GPT-4 AI models to analyze Amazon product data and generate high-quality, unique content. Simply visit any Amazon product page, click our extension icon, and watch as professional reviews, comparisons, and buying guides are created in seconds. The AI understands product features, benefits, and creates persuasive copy that converts visitors into buyers."
+                    answer: "Our Chrome extension uses advanced GPT-4 AI models to analyze Amazon product data and generate high-quality, unique content. Simply visit any Amazon product page, click our extension icon, and watch as professional reviews, comparisons, and buying guides are created in seconds."
                   },
                   {
-                    question: "Is this better than other Amazon affiliate content tools?",
-                    answer: "Yes! Unlike other tools that create generic content, our AI generates personalized, SEO-optimized reviews that read naturally. We support all Amazon domains worldwide, include advanced SEO features, and provide a professional editor. Most importantly, our content converts better because it's written specifically for Amazon affiliate marketing."
-                  },
-                  {
-                    question: "Which Amazon domains and countries are supported?",
-                    answer: "We support all major Amazon domains worldwide including amazon.com (US), amazon.ca (Canada), amazon.co.uk (UK), amazon.de (Germany), amazon.fr (France), amazon.es (Spain), amazon.it (Italy), amazon.in (India), amazon.com.mx (Mexico), amazon.com.br (Brazil), amazon.com.au (Australia), amazon.jp (Japan), and more. The extension automatically detects the domain and extracts product data accordingly."
+                    question: "What's the difference between the Free and Pro plans?",
+                    answer: "The Free Starter plan includes 10 articles per month with GPT-3.5 access and basic features. The Pro Growth plan offers 30 articles per month with GPT-4 access, advanced SEO features, content repurposing tools, and priority support."
                   },
                   {
                     question: "Do I need my own OpenAI API key?",
-                    answer: "Yes, you'll need your own OpenAI API key for content generation. This ensures your data privacy, gives you control over costs (typically $0.01-$0.10 per article), and provides unlimited usage based on your needs. Setting up an API key takes 2 minutes and we provide step-by-step instructions plus video tutorials."
+                    answer: "Yes, you'll need your own OpenAI API key for content generation. This ensures your data privacy, gives you control over costs (typically $0.01-$0.10 per article), and provides unlimited usage based on your needs."
                   },
                   {
-                    question: "What's included in the 30-day money-back guarantee?",
-                    answer: "We offer a risk-free 30-day money-back guarantee. If you're not completely satisfied with AI Affiliate Pro for any reason, contact our support team within 30 days for a full refund. No questions asked, no hassle. We're confident you'll love the results."
-                  },
-                  {
-                    question: "Can I use this for multiple websites and niches?",
-                    answer: "Absolutely! There are no restrictions on the number of websites, niches, or affiliate programs you can use this with. Create content for technology, health, fitness, home & garden, beauty, sports, or any other niche. The AI adapts to any product category automatically and generates relevant, targeted content."
-                  },
-                  {
-                    question: "How quickly can I start generating Amazon product reviews?",
-                    answer: "You can start generating content within 5 minutes of purchase! Simply install the Chrome extension from the Chrome Web Store, add your OpenAI API key in the settings, and you're ready to go. No complex setup, no learning curve - just instant, professional content creation."
-                  },
-                  {
-                    question: "Is the content generated unique and SEO-optimized?",
-                    answer: "Yes! Every piece of content is 100% unique and optimized for search engines. Our AI generates original content that includes targeted keywords, proper header structure, meta descriptions, schema markup, and other SEO elements that help your content rank higher on Google and drive more organic traffic to your affiliate links."
+                    question: "Which Amazon domains are supported?",
+                    answer: "We support all major Amazon domains worldwide including amazon.com (US), amazon.ca (Canada), amazon.co.uk (UK), amazon.de (Germany), amazon.fr (France), and many more. The extension automatically detects the domain."
                   }
                 ].map((item, index) => (
                   <AccordionItem key={index} value={`item-${index}`} className="border border-border rounded-lg px-6">
@@ -780,6 +763,13 @@ const Index = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
+              
+              <div className="text-center mt-12">
+                <p className="text-muted-foreground mb-6">Have more questions?</p>
+                <Button variant="outline" size="lg" asChild>
+                  <a href="/faq">View Complete FAQ</a>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
@@ -954,25 +944,24 @@ const Index = () => {
                   <li><a href="#features" className="hover:text-foreground transition-colors">Features</a></li>
                   <li><a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a></li>
                   <li><a href="#testimonials" className="hover:text-foreground transition-colors">Testimonials</a></li>
-                  <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
+                  <li><a href="/faq" className="hover:text-foreground transition-colors">FAQ</a></li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="font-bold text-lg mb-6">Support</h3>
                 <ul className="space-y-3 text-muted-foreground">
-                  <li><a href="/support" className="hover:text-foreground transition-colors">Help Center</a></li>
-                  <li><a href="/contact" className="hover:text-foreground transition-colors">Contact Us</a></li>
-                  <li><a href="/api" className="hover:text-foreground transition-colors">API Setup Guide</a></li>
+                  <li><a href="/help-center" className="hover:text-foreground transition-colors">Help Center</a></li>
+                  <li><a href="/contact-us" className="hover:text-foreground transition-colors">Contact Us</a></li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="font-bold text-lg mb-6">Legal</h3>
                 <ul className="space-y-3 text-muted-foreground">
-                  <li><a href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
-                  <li><a href="/terms" className="hover:text-foreground transition-colors">Terms of Service</a></li>
-                  <li><a href="/refund" className="hover:text-foreground transition-colors">Refund Policy</a></li>
+                  <li><a href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
+                  <li><a href="/terms-of-service" className="hover:text-foreground transition-colors">Terms of Service</a></li>
+                  <li><a href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</a></li>
                 </ul>
               </div>
             </div>
