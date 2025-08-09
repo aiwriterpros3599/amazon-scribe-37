@@ -1,4 +1,3 @@
-
 import { Helmet } from "react-helmet-async";
 import { 
   Breadcrumb,
@@ -323,7 +322,6 @@ const FAQ = () => {
                 <AccordionContent className="text-muted-foreground">
                   <p>Yes, all generated content can be exported in multiple formats including HTML, Markdown, and plain text. You can copy the content directly to your clipboard or export it as files for use in your preferred publishing platform.</p>
                 </AccordionContent>
-              </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="mobile-app" className="border border-border rounded-lg px-4">
