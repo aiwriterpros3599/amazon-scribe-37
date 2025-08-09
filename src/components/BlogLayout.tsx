@@ -12,14 +12,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import Logo from "./Logo";
-import { CalendarIcon, UserIcon, ClockIcon, ChevronDownIcon, MenuIcon, XIcon } from "lucide-react";
+import { MenuIcon, XIcon } from "lucide-react";
 
 interface BlogLayoutProps {
   children: ReactNode;
@@ -77,22 +71,22 @@ const BlogLayout = ({ children, title, description, showSidebar = true }: BlogLa
                   <NavigationMenuTrigger>Features</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px]">
-                      <div className="grid grid-cols-2 gap-4">
-                        <a href="/features/ai-content-generation" className="block p-3 hover:bg-accent rounded-lg">
-                          <div className="font-semibold">AI Content Generation</div>
-                          <div className="text-sm text-muted-foreground">Generate reviews with GPT-4</div>
+                      <div className="grid gap-3">
+                        <a href="/features/ai-content-generation" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                          <div className="font-semibold text-foreground">AI Content Generation</div>
+                          <div className="text-sm text-muted-foreground">Generate high-quality Amazon product reviews with AI</div>
                         </a>
-                        <a href="/features/seo-optimization" className="block p-3 hover:bg-accent rounded-lg">
-                          <div className="font-semibold">SEO Optimization Suite</div>
-                          <div className="text-sm text-muted-foreground">Built-in SEO best practices</div>
+                        <a href="/features/seo-optimization-suite" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                          <div className="font-semibold text-foreground">SEO Optimization Suite</div>
+                          <div className="text-sm text-muted-foreground">Built-in SEO best practices for better rankings</div>
                         </a>
-                        <a href="/features/amazon-integration" className="block p-3 hover:bg-accent rounded-lg">
-                          <div className="font-semibold">Amazon Integration</div>
-                          <div className="text-sm text-muted-foreground">Seamless affiliate linking</div>
+                        <a href="/features/amazon-integration" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                          <div className="font-semibold text-foreground">Amazon Integration</div>
+                          <div className="text-sm text-muted-foreground">Seamless integration with Amazon affiliate program</div>
                         </a>
-                        <a href="/features/image-management" className="block p-3 hover:bg-accent rounded-lg">
-                          <div className="font-semibold">Image Management</div>
-                          <div className="text-sm text-muted-foreground">Auto image optimization</div>
+                        <a href="/features/image-management" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                          <div className="font-semibold text-foreground">Image Management</div>
+                          <div className="text-sm text-muted-foreground">Automatic image optimization and management</div>
                         </a>
                       </div>
                     </div>
@@ -121,21 +115,21 @@ const BlogLayout = ({ children, title, description, showSidebar = true }: BlogLa
                   <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid gap-3 p-6 md:w-[300px]">
-                      <a href="/help-center" className="block p-3 hover:bg-accent rounded-lg">
-                        <div className="font-semibold">Help Center</div>
-                        <div className="text-sm text-muted-foreground">Support and tutorials</div>
+                      <a href="/help-center" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                        <div className="font-semibold text-foreground">Help Center</div>
+                        <div className="text-sm text-muted-foreground">Support documentation and tutorials</div>
                       </a>
-                      <a href="/faq" className="block p-3 hover:bg-accent rounded-lg">
-                        <div className="font-semibold">FAQ</div>
-                        <div className="text-sm text-muted-foreground">Common questions</div>
+                      <a href="/faq" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                        <div className="font-semibold text-foreground">FAQ</div>
+                        <div className="text-sm text-muted-foreground">Frequently asked questions</div>
                       </a>
-                      <a href="/free-starter-kit" className="block p-3 hover:bg-accent rounded-lg">
-                        <div className="font-semibold">Free Starter Kit</div>
-                        <div className="text-sm text-muted-foreground">Templates and guides</div>
+                      <a href="/resources/free-starter-kit" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                        <div className="font-semibold text-foreground">Free Starter Kit</div>
+                        <div className="text-sm text-muted-foreground">Templates and getting started guides</div>
                       </a>
-                      <a href="/case-studies" className="block p-3 hover:bg-accent rounded-lg">
-                        <div className="font-semibold">Case Studies</div>
-                        <div className="text-sm text-muted-foreground">Success stories</div>
+                      <a href="/resources/case-studies" className="block p-3 hover:bg-accent rounded-lg transition-colors">
+                        <div className="font-semibold text-foreground">Case Studies</div>
+                        <div className="text-sm text-muted-foreground">Real success stories from our users</div>
                       </a>
                     </div>
                   </NavigationMenuContent>
@@ -151,35 +145,74 @@ const BlogLayout = ({ children, title, description, showSidebar = true }: BlogLa
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden"
+              className="lg:hidden p-2 hover:bg-accent rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
             </button>
 
-            <Button variant="default" size="lg" className="hidden lg:flex">Get Started Free</Button>
+            <Button variant="default" size="lg" className="hidden lg:flex">
+              Get Started Free
+            </Button>
           </div>
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
             <div className="lg:hidden mt-4 pb-4 border-t border-border">
-              <nav className="flex flex-col space-y-4 mt-4">
-                <a href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</a>
-                <div>
-                  <button className="text-muted-foreground hover:text-foreground transition-colors flex items-center">
-                    Features <ChevronDownIcon className="ml-1 h-4 w-4" />
-                  </button>
+              <nav className="flex flex-col space-y-3 mt-4">
+                <a href="/" className="px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors">
+                  Home
+                </a>
+                <div className="px-3 py-2">
+                  <div className="font-medium text-foreground mb-2">Features</div>
+                  <div className="ml-4 space-y-2">
+                    <a href="/features/ai-content-generation" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      AI Content Generation
+                    </a>
+                    <a href="/features/seo-optimization-suite" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      SEO Optimization Suite
+                    </a>
+                    <a href="/features/amazon-integration" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      Amazon Integration
+                    </a>
+                    <a href="/features/image-management" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      Image Management
+                    </a>
+                  </div>
                 </div>
-                <a href="/how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
-                <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
-                <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a>
-                <div>
-                  <button className="text-muted-foreground hover:text-foreground transition-colors flex items-center">
-                    Resources <ChevronDownIcon className="ml-1 h-4 w-4" />
-                  </button>
+                <a href="/how-it-works" className="px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors">
+                  How It Works
+                </a>
+                <a href="/pricing" className="px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors">
+                  Pricing
+                </a>
+                <a href="/blog" className="px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors">
+                  Blog
+                </a>
+                <div className="px-3 py-2">
+                  <div className="font-medium text-foreground mb-2">Resources</div>
+                  <div className="ml-4 space-y-2">
+                    <a href="/help-center" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      Help Center
+                    </a>
+                    <a href="/faq" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      FAQ
+                    </a>
+                    <a href="/resources/free-starter-kit" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      Free Starter Kit
+                    </a>
+                    <a href="/resources/case-studies" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      Case Studies
+                    </a>
+                  </div>
                 </div>
-                <a href="/reviews" className="text-muted-foreground hover:text-foreground transition-colors">Reviews</a>
-                <Button variant="default" size="lg" className="w-full mt-4">Get Started Free</Button>
+                <a href="/reviews" className="px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors">
+                  Reviews
+                </a>
+                <Button variant="default" size="lg" className="mx-3 mt-4">
+                  Get Started Free
+                </Button>
               </nav>
             </div>
           )}
