@@ -38,13 +38,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Logo } from "@/components/Logo";
+import Logo from "@/components/Logo";
+import Header from "@/components/Header";
 
 const Index = () => {
   const [isAnnual, setIsAnnual] = useState(false);
 
   return (
     <>
+      <Header />
       <div className="bg-white">
         {/* Hero Section */}
         <section className="py-24 px-4">
@@ -65,66 +67,103 @@ const Index = () => {
           </div>
         </section>
 
-        {/* How It Works Section */}
+        {/* How to Write Amazon Product Reviews Automatically Section */}
         <section className="py-16 px-4 bg-muted">
-          <div className="container mx-auto max-w-5xl text-center">
-            <h2 className="text-4xl font-bold mb-8">How It Works</h2>
-            <p className="text-xl text-muted-foreground mb-12">
-              Create professional Amazon product reviews in 4 simple steps. Our
-              AI does the heavy lifting while you focus on earning commissions.
-            </p>
-            <div className="grid md:grid-cols-4 gap-8">
-              {/* Step 1 */}
-              <Card className="bg-background">
-                <CardHeader className="text-center">
-                  <div className="text-5xl font-bold text-primary mb-4">01</div>
-                  <CardTitle>Install Extension</CardTitle>
+          <div className="container mx-auto max-w-7xl">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">
+                How to Write Amazon Product Reviews Automatically
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8">
+                Our Chrome extension works seamlessly with Amazon and Microsoft Edge to generate professional product reviews instantly
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {/* Block 1 */}
+              <Card className="bg-background text-center">
+                <CardHeader>
+                  <div className="text-3xl font-bold text-primary mb-3">🔧</div>
+                  <CardTitle className="text-lg">Install Extension</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  Add to Chrome in 30 seconds. Works on all Amazon domains
-                  worldwide including .com, .co.uk, .de, and more.
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Add to Chrome or Edge in 30 seconds
+                  </p>
                 </CardContent>
               </Card>
 
-              {/* Step 2 */}
-              <Card className="bg-background">
-                <CardHeader className="text-center">
-                  <div className="text-5xl font-bold text-primary mb-4">02</div>
-                  <CardTitle>Visit Product Page</CardTitle>
+              {/* Block 2 */}
+              <Card className="bg-background text-center">
+                <CardHeader>
+                  <div className="text-3xl font-bold text-primary mb-3">🛍️</div>
+                  <CardTitle className="text-lg">Browse Amazon</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  Browse any Amazon product. Our AI automatically detects and
-                  analyzes product information and customer reviews.
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Visit any product page on Amazon
+                  </p>
                 </CardContent>
               </Card>
 
-              {/* Step 3 */}
-              <Card className="bg-background">
-                <CardHeader className="text-center">
-                  <div className="text-5xl font-bold text-primary mb-4">03</div>
-                  <CardTitle>Generate Content</CardTitle>
+              {/* Block 3 */}
+              <Card className="bg-background text-center">
+                <CardHeader>
+                  <div className="text-3xl font-bold text-primary mb-3">🤖</div>
+                  <CardTitle className="text-lg">AI Analysis</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  One click creates professional reviews, comparisons, buying
-                  guides, and SEO-optimized content instantly.
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    AI analyzes product details automatically
+                  </p>
                 </CardContent>
               </Card>
 
-              {/* Step 4 */}
-              <Card className="bg-background">
-                <CardHeader className="text-center">
-                  <div className="text-5xl font-bold text-primary mb-4">04</div>
-                  <CardTitle>Edit & Publish</CardTitle>
+              {/* Block 4 */}
+              <Card className="bg-background text-center">
+                <CardHeader>
+                  <div className="text-3xl font-bold text-primary mb-3">✨</div>
+                  <CardTitle className="text-lg">Generate Review</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  Customize in our built-in editor, add affiliate links, and
-                  publish to your website for instant commissions.
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Professional review created in seconds
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Block 5 */}
+              <Card className="bg-background text-center">
+                <CardHeader>
+                  <div className="text-3xl font-bold text-primary mb-3">✏️</div>
+                  <CardTitle className="text-lg">Edit & Customize</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Personalize with built-in editor
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Block 6 */}
+              <Card className="bg-background text-center">
+                <CardHeader>
+                  <div className="text-3xl font-bold text-primary mb-3">💰</div>
+                  <CardTitle className="text-lg">Earn Commissions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Publish and start earning money
+                  </p>
                 </CardContent>
               </Card>
             </div>
-            <Button className="mt-12" size="lg">
-              Get Started in 30 Seconds
-            </Button>
+
+            <div className="text-center mt-12">
+              <Button size="lg">
+                Get Started in 30 Seconds
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -531,8 +570,7 @@ const Index = () => {
               <div className="space-y-4">
                 <Logo />
                 <p className="text-sm text-muted-foreground">
-                  AI-powered Chrome extension for Amazon affiliate marketing
-                  success.
+                  AI-powered Chrome extension for Amazon affiliate success.
                 </p>
                 <div className="flex space-x-4">
                   <a
@@ -556,7 +594,7 @@ const Index = () => {
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                     </svg>
                   </a>
                   <a
@@ -569,18 +607,6 @@ const Index = () => {
                       viewBox="0 0 24 24"
                     >
                       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <svg
-                      className="h-5 w-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                     </svg>
                   </a>
                 </div>
