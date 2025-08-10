@@ -22,7 +22,7 @@ const AIContentCreation = () => {
       date: "January 19, 2025",
       readTime: "14 min read",
       slug: "ai-content-generation-affiliate-marketing-2025",
-      image: "/placeholder.svg?height=400&width=600"
+      image: "/lovable-uploads/813e6d1a-efce-4342-a260-33552b74c90f.png"
     },
     {
       title: "ChatGPT vs Specialized AI Tools for Product Reviews: Which Works Better?",
@@ -31,7 +31,7 @@ const AIContentCreation = () => {
       date: "January 17, 2025",
       readTime: "16 min read",
       slug: "chatgpt-vs-specialized-ai-tools-product-reviews",
-      image: "/placeholder.svg?height=400&width=600"
+      image: "/lovable-uploads/f1ad64f6-e8e1-4b81-a2fa-bab62f53153c.png"
     },
     {
       title: "How AI is Revolutionizing Amazon Product Review Writing in 2025",
@@ -40,7 +40,7 @@ const AIContentCreation = () => {
       date: "January 15, 2025",
       readTime: "12 min read",
       slug: "ai-revolutionizing-amazon-product-review-writing-2025",
-      image: "/placeholder.svg?height=400&width=600"
+      image: "/lovable-uploads/1a640917-1477-48d2-ab93-08c66f92dc93.png"
     }
   ];
 
