@@ -1,4 +1,3 @@
-
 import { Helmet } from "react-helmet-async";
 import BlogLayout from "@/components/BlogLayout";
 import { Badge } from "@/components/ui/badge";
@@ -110,10 +109,11 @@ const BestAmazonAffiliateNiches2025 = () => {
             </div>
           </header>
 
+          {/* Featured Image */}
           <div className="mb-8">
             <img
-              src="/lovable-uploads/1a640917-1477-48d2-ab93-08c66f92dc93.png"
-              alt="AI-powered market analysis dashboard displaying profitable Amazon affiliate niches with performance metrics and growth trends for 2025"
+              src="/lovable-uploads/amazon-niches-featured.png"
+              alt="Best Amazon affiliate niches 2025 analysis showing top 10 profitable categories with earnings potential, competition levels, and market opportunity breakdown for affiliate marketers"
               className="w-full h-96 object-cover rounded-lg"
             />
           </div>

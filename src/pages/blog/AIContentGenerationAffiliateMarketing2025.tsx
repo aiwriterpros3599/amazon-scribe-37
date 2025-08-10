@@ -1,4 +1,3 @@
-
 import { Helmet } from "react-helmet-async";
 import BlogLayout from "@/components/BlogLayout";
 import { Badge } from "@/components/ui/badge";
@@ -112,8 +111,8 @@ const AIContentGenerationAffiliateMarketing2025 = () => {
 
           <div className="mb-8">
             <img
-              src="/lovable-uploads/813e6d1a-efce-4342-a260-33552b74c90f.png"
-              alt="AI-powered content generation interface showing automated creation of affiliate marketing reviews with brain-inspired neural network visualization and productivity metrics"
+              src="/lovable-uploads/ai-content-generation-featured.png"
+              alt="AI content generation for affiliate marketing 2025 comprehensive guide showing automation tools, content creation workflows, and AI-powered strategies for scaling affiliate marketing success"
               className="w-full h-96 object-cover rounded-lg"
             />
           </div>

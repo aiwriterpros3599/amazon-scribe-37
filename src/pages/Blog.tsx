@@ -1,4 +1,3 @@
-
 import BlogLayout from "@/components/BlogLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +19,7 @@ const Blog = () => {
       date: "January 20, 2025",
       readTime: "15 min read",
       slug: "how-to-start-amazon-affiliate-marketing-2025",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/lovable-uploads/amazon-affiliate-guide-featured.png",
       featured: true
     },
     {
@@ -31,7 +30,7 @@ const Blog = () => {
       date: "January 19, 2025",
       readTime: "14 min read",
       slug: "ai-content-generation-affiliate-marketing-2025",
-      image: "/placeholder.svg?height=400&width=600"
+      image: "/lovable-uploads/ai-content-generation-featured.png"
     },
     {
       title: "How to Write Amazon Product Reviews That Actually Convert in 2025",
@@ -41,17 +40,17 @@ const Blog = () => {
       date: "January 18, 2025", 
       readTime: "16 min read",
       slug: "how-to-write-amazon-product-reviews-convert-2025",
-      image: "/placeholder.svg?height=400&width=600"
+      image: "/lovable-uploads/f1ad64f6-e8e1-4b81-a2fa-bab62f53153c.png"
     },
     {
-      title: "25 Best Chrome Extensions for Affiliate Marketers and Content Creators",
-      excerpt: "Discover the top Chrome extensions that will supercharge your affiliate marketing workflow. Comprehensive review with feature comparisons and recommendations.",
-      category: "Chrome Extension Tips",
+      title: "10 Best Amazon Affiliate Niches That Actually Make Money in 2025",
+      excerpt: "Discover the most profitable Amazon affiliate niches for 2025. Complete analysis with earnings potential, competition levels, and getting started tips.",
+      category: "Amazon Affiliate Marketing",
       author: "David Mitchell",
       date: "January 17, 2025",
       readTime: "18 min read", 
-      slug: "best-chrome-extensions-affiliate-marketers-2025",
-      image: "/placeholder.svg?height=400&width=600"
+      slug: "best-amazon-affiliate-niches-2025",
+      image: "/lovable-uploads/amazon-niches-featured.png"
     }
   ];
 
@@ -138,6 +137,15 @@ const Blog = () => {
         title="AI Affiliate Pro Blog"
         description="Expert insights, strategies, and tutorials for Amazon affiliate marketing success with AI-powered content creation"
       >
+        {/* Featured Blog Hero Image */}
+        <div className="mb-16">
+          <img
+            src="/lovable-uploads/blog-homepage-hero.png"
+            alt="AI Affiliate Pro Blog homepage featuring expert Amazon affiliate marketing insights, AI content creation strategies, and comprehensive guides for affiliate marketers"
+            className="w-full h-64 object-cover rounded-lg mb-8"
+          />
+        </div>
+
         {/* Search and Newsletter Section */}
         <div className="mb-16">
           <Card className="bg-gradient-feature p-8">
@@ -190,7 +198,7 @@ const Blog = () => {
                 <div className="relative">
                   <img
                     src={featuredArticles[0].image}
-                    alt={featuredArticles[0].title}
+                    alt={`${featuredArticles[0].title} - comprehensive guide for Amazon affiliate marketing beginners with step-by-step strategies and real examples`}
                     className="w-full h-64 lg:h-full object-cover rounded-l-lg"
                   />
                   <Badge className="absolute top-4 left-4 bg-primary">Featured Guide</Badge>
@@ -276,7 +284,7 @@ const Blog = () => {
                 <div className="relative">
                   <img
                     src={article.image}
-                    alt={article.title}
+                    alt={`${article.title} - ${article.excerpt.substring(0, 100)}...`}
                     className="w-full h-48 object-cover rounded-t-lg"
                   />
                   <Badge variant="outline" className="absolute top-4 left-4 bg-background">
