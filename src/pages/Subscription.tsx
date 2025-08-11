@@ -57,15 +57,26 @@ const Subscription = () => {
       if (stripeError) throw stripeError;
       setSubscriptionData(stripeData);
 
-      // Get user data from database
-      const { data: dbData, error: dbError } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', session.user.id)
-        .single();
+      // Get user data using RPC function to avoid type issues
+      const { data: dashboardData, error: dashboardError } = await supabase.rpc('get_user_dashboard_data', {
+        user_uuid: session.user.id
+      });
 
-      if (dbError) throw dbError;
-      setUserData(dbData);
+      if (dashboardError) {
+        console.error('Dashboard data error:', dashboardError);
+        // Fallback to basic user info if dashboard function fails
+        setUserData({
+          words_used_current_month: 0,
+          words_limit: 2000,
+          reviews_generated_current_month: 0,
+          subscription_plan: stripeData?.subscription_plan || 'free',
+          subscription_status: stripeData?.subscription_status || 'free',
+          current_period_end: stripeData?.current_period_end || null,
+          trial_end_date: stripeData?.trial_end || null,
+        });
+      } else if (dashboardData?.user_info) {
+        setUserData(dashboardData.user_info);
+      }
 
     } catch (error) {
       console.error('Error fetching subscription data:', error);
