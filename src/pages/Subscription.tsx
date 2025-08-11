@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,19 +58,25 @@ const Subscription = () => {
 
       // Get user data using RPC function with proper error handling
       try {
-        const { data: dashboardData, error: dashboardError } = await supabase.rpc('get_user_dashboard_data' as any, {
-          user_uuid: session.user.id
-        });
+        const { data: dashboardData, error: dashboardError } = await supabase
+          .rpc('get_user_dashboard_data', {
+            user_uuid: session.user.id
+          });
 
         if (dashboardError) {
           console.error('Dashboard data error:', dashboardError);
           throw dashboardError;
         }
 
-        if (dashboardData && typeof dashboardData === 'object' && 'user_info' in dashboardData) {
-          setUserData(dashboardData.user_info as UserData);
+        if (dashboardData && typeof dashboardData === 'object' && dashboardData !== null) {
+          const typedData = dashboardData as any;
+          if (typedData.user_info) {
+            setUserData(typedData.user_info as UserData);
+          } else {
+            throw new Error('Invalid dashboard data structure');
+          }
         } else {
-          throw new Error('Invalid dashboard data structure');
+          throw new Error('No dashboard data returned');
         }
       } catch (dashboardError) {
         console.error('Failed to fetch dashboard data, using fallback:', dashboardError);
