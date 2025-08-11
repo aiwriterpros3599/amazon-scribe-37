@@ -59,29 +59,33 @@ const Subscription = () => {
       // Get user data using RPC function with proper error handling
       try {
         const { data: dashboardData, error: dashboardError } = await supabase
-          .rpc('get_user_dashboard_data', {
-            user_uuid: session.user.id
-          }) as { data: any; error: any };
+          .from('users')
+          .select('*')
+          .eq('id', session.user.id)
+          .single();
 
         if (dashboardError) {
           console.error('Dashboard data error:', dashboardError);
           throw dashboardError;
         }
 
-        // Type guard and null check for dashboardData
-        if (dashboardData && typeof dashboardData === 'object') {
-          const typedData = dashboardData as { user_info?: UserData };
-          if (typedData.user_info) {
-            setUserData(typedData.user_info);
-          } else {
-            throw new Error('Invalid dashboard data structure - missing user_info');
-          }
+        // Transform the data to match UserData interface
+        if (dashboardData) {
+          setUserData({
+            words_used_current_month: dashboardData.words_used_current_month || 0,
+            words_limit: dashboardData.words_limit || 2000,
+            reviews_generated_current_month: dashboardData.reviews_generated_current_month || 0,
+            subscription_plan: dashboardData.subscription_plan || 'free',
+            subscription_status: dashboardData.subscription_status || 'free',
+            current_period_end: dashboardData.current_period_end || null,
+            trial_end_date: dashboardData.trial_end_date || null,
+          });
         } else {
-          throw new Error('No dashboard data returned or invalid format');
+          throw new Error('No user data found');
         }
       } catch (dashboardError) {
-        console.error('Failed to fetch dashboard data, using fallback:', dashboardError);
-        // Fallback to basic user info if dashboard function fails
+        console.error('Failed to fetch user data, using fallback:', dashboardError);
+        // Fallback to basic user info if query fails
         setUserData({
           words_used_current_month: 0,
           words_limit: 2000,
