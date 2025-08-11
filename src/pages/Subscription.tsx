@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -62,7 +61,7 @@ const Subscription = () => {
         const { data: dashboardData, error: dashboardError } = await supabase
           .rpc('get_user_dashboard_data', {
             user_uuid: session.user.id
-          });
+          }) as { data: any; error: any };
 
         if (dashboardError) {
           console.error('Dashboard data error:', dashboardError);
