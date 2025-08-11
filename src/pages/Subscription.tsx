@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -68,15 +69,16 @@ const Subscription = () => {
           throw dashboardError;
         }
 
-        if (dashboardData && typeof dashboardData === 'object' && dashboardData !== null) {
-          const typedData = dashboardData as any;
+        // Type guard and null check for dashboardData
+        if (dashboardData && typeof dashboardData === 'object') {
+          const typedData = dashboardData as { user_info?: UserData };
           if (typedData.user_info) {
-            setUserData(typedData.user_info as UserData);
+            setUserData(typedData.user_info);
           } else {
-            throw new Error('Invalid dashboard data structure');
+            throw new Error('Invalid dashboard data structure - missing user_info');
           }
         } else {
-          throw new Error('No dashboard data returned');
+          throw new Error('No dashboard data returned or invalid format');
         }
       } catch (dashboardError) {
         console.error('Failed to fetch dashboard data, using fallback:', dashboardError);
