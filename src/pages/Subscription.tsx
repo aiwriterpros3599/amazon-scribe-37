@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -56,9 +57,9 @@ const Subscription = () => {
       if (stripeError) throw stripeError;
       setSubscriptionData(stripeData);
 
-      // Get user data using RPC function with proper error handling
+      // Get user data with type assertion to work around missing types
       try {
-        const { data: dashboardData, error: dashboardError } = await supabase
+        const { data: dashboardData, error: dashboardError } = await (supabase as any)
           .from('users')
           .select('*')
           .eq('id', session.user.id)
