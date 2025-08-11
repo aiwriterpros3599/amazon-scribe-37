@@ -12,6 +12,7 @@ const Pricing = () => {
   const [loading, setLoading] = useState<string | null>(null);
   const { toast } = useToast();
 
+  // Updated pricing to match the exact specifications
   const plans = [
     {
       id: 'free',
@@ -37,7 +38,7 @@ const Pricing = () => {
       name: 'Basic Pro',
       description: 'Ideal for content creators and bloggers',
       monthlyPrice: 19,
-      yearlyPrice: 168, // 26% discount
+      yearlyPrice: 14, // $14/month when billed yearly ($168 total)
       wordLimit: '25,000 words/month',
       features: [
         'Advanced AI content generation',
@@ -58,8 +59,8 @@ const Pricing = () => {
       name: 'Elite Agency',
       description: 'For agencies and power users',
       monthlyPrice: 49,
-      yearlyPrice: 420, // 29% discount
-      wordLimit: '100,000 words/month',
+      yearlyPrice: 35, // $35/month when billed yearly ($420 total)
+      wordLimit: 'Unlimited words/month',
       features: [
         'All Basic Pro features',
         'Team collaboration tools',
@@ -133,14 +134,20 @@ const Pricing = () => {
   const getPrice = (plan: typeof plans[0]) => {
     if (plan.monthlyPrice === 0) return 'Free';
     const price = billingPeriod === 'yearly' ? plan.yearlyPrice : plan.monthlyPrice;
-    const period = billingPeriod === 'yearly' ? '/year' : '/month';
+    const period = billingPeriod === 'yearly' ? '/month' : '/month';
     return `$${price}${period}`;
+  };
+
+  const getAnnualTotal = (plan: typeof plans[0]) => {
+    if (plan.monthlyPrice === 0) return null;
+    return billingPeriod === 'yearly' ? plan.yearlyPrice * 12 : null;
   };
 
   const getSavings = (plan: typeof plans[0]) => {
     if (plan.monthlyPrice === 0) return null;
     const monthlyTotal = plan.monthlyPrice * 12;
-    const savings = monthlyTotal - plan.yearlyPrice;
+    const yearlyTotal = plan.yearlyPrice * 12;
+    const savings = monthlyTotal - yearlyTotal;
     const percentage = Math.round((savings / monthlyTotal) * 100);
     return { amount: savings, percentage };
   };
@@ -186,6 +193,7 @@ const Pricing = () => {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan) => {
             const savings = getSavings(plan);
+            const annualTotal = getAnnualTotal(plan);
             
             return (
               <Card 
@@ -217,6 +225,11 @@ const Pricing = () => {
                     <div className="text-4xl font-bold text-foreground">
                       {getPrice(plan)}
                     </div>
+                    {billingPeriod === 'yearly' && annualTotal && (
+                      <div className="text-sm text-muted-foreground mt-1">
+                        ${annualTotal}/year
+                      </div>
+                    )}
                     {billingPeriod === 'yearly' && savings && (
                       <div className="text-sm text-success mt-1">
                         Save ${savings.amount}/year ({savings.percentage}% off)

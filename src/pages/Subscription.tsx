@@ -8,6 +8,9 @@ import { CreditCard, Download, Settings, TrendingUp, Calendar, AlertCircle } fro
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
+import type { Database } from "@/integrations/supabase/types";
+
+type UserRow = Database['public']['Tables']['users']['Row'];
 
 interface SubscriptionData {
   subscribed: boolean;
@@ -17,19 +20,9 @@ interface SubscriptionData {
   trial_end: string | null;
 }
 
-interface UserData {
-  words_used_current_month: number;
-  words_limit: number;
-  reviews_generated_current_month: number;
-  subscription_plan: string;
-  subscription_status: string;
-  current_period_end: string | null;
-  trial_end_date: string | null;
-}
-
 const Subscription = () => {
   const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null>(null);
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const { toast } = useToast();
@@ -57,46 +50,19 @@ const Subscription = () => {
       if (stripeError) throw stripeError;
       setSubscriptionData(stripeData);
 
-      // Get user data with type assertion to work around missing types
-      try {
-        const { data: dashboardData, error: dashboardError } = await (supabase as any)
-          .from('users')
-          .select('*')
-          .eq('id', session.user.id)
-          .single();
+      // Get user data from database
+      const { data: dashboardData, error: dashboardError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', session.user.id)
+        .single();
 
-        if (dashboardError) {
-          console.error('Dashboard data error:', dashboardError);
-          throw dashboardError;
-        }
-
-        // Transform the data to match UserData interface
-        if (dashboardData) {
-          setUserData({
-            words_used_current_month: dashboardData.words_used_current_month || 0,
-            words_limit: dashboardData.words_limit || 2000,
-            reviews_generated_current_month: dashboardData.reviews_generated_current_month || 0,
-            subscription_plan: dashboardData.subscription_plan || 'free',
-            subscription_status: dashboardData.subscription_status || 'free',
-            current_period_end: dashboardData.current_period_end || null,
-            trial_end_date: dashboardData.trial_end_date || null,
-          });
-        } else {
-          throw new Error('No user data found');
-        }
-      } catch (dashboardError) {
-        console.error('Failed to fetch user data, using fallback:', dashboardError);
-        // Fallback to basic user info if query fails
-        setUserData({
-          words_used_current_month: 0,
-          words_limit: 2000,
-          reviews_generated_current_month: 0,
-          subscription_plan: stripeData?.subscription_plan || 'free',
-          subscription_status: stripeData?.subscription_status || 'free',
-          current_period_end: stripeData?.current_period_end || null,
-          trial_end_date: stripeData?.trial_end || null,
-        });
+      if (dashboardError) {
+        console.error('Dashboard data error:', dashboardError);
+        throw dashboardError;
       }
+
+      setUserData(dashboardData);
 
     } catch (error) {
       console.error('Error fetching subscription data:', error);

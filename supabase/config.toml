@@ -54,6 +54,9 @@ verify_jwt = true
 [functions.customer-portal]
 verify_jwt = true
 
+[functions.handle-webhook]
+verify_jwt = false
+
 [edge-runtime]
 enabled = true
 ip_version = "ipv4"
