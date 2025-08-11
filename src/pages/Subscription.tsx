@@ -57,13 +57,24 @@ const Subscription = () => {
       if (stripeError) throw stripeError;
       setSubscriptionData(stripeData);
 
-      // Get user data using RPC function to avoid type issues
-      const { data: dashboardData, error: dashboardError } = await supabase.rpc('get_user_dashboard_data', {
-        user_uuid: session.user.id
-      });
+      // Get user data using RPC function with proper error handling
+      try {
+        const { data: dashboardData, error: dashboardError } = await supabase.rpc('get_user_dashboard_data' as any, {
+          user_uuid: session.user.id
+        });
 
-      if (dashboardError) {
-        console.error('Dashboard data error:', dashboardError);
+        if (dashboardError) {
+          console.error('Dashboard data error:', dashboardError);
+          throw dashboardError;
+        }
+
+        if (dashboardData && typeof dashboardData === 'object' && 'user_info' in dashboardData) {
+          setUserData(dashboardData.user_info as UserData);
+        } else {
+          throw new Error('Invalid dashboard data structure');
+        }
+      } catch (dashboardError) {
+        console.error('Failed to fetch dashboard data, using fallback:', dashboardError);
         // Fallback to basic user info if dashboard function fails
         setUserData({
           words_used_current_month: 0,
@@ -74,8 +85,6 @@ const Subscription = () => {
           current_period_end: stripeData?.current_period_end || null,
           trial_end_date: stripeData?.trial_end || null,
         });
-      } else if (dashboardData?.user_info) {
-        setUserData(dashboardData.user_info);
       }
 
     } catch (error) {
