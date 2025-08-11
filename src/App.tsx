@@ -16,6 +16,8 @@ import RefundPolicy from "./pages/RefundPolicy";
 import HelpCenter from "./pages/HelpCenter";
 import ContactUs from "./pages/ContactUs";
 import FAQ from "./pages/FAQ";
+import Pricing from "./pages/Pricing";
+import Subscription from "./pages/Subscription";
 import AmazonAffiliateGuide from "./pages/blog/AmazonAffiliateGuide";
 import HowToStartAmazonAffiliateMarketing from "./pages/blog/HowToStartAmazonAffiliateMarketing";
 import AmazonAffiliateCommissionRates2025 from "./pages/blog/AmazonAffiliateCommissionRates2025";
@@ -39,6 +41,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/subscription" element={<Subscription />} />
             <Route path="/blog/amazon-affiliate-marketing-beginners-guide-2025" element={<AmazonAffiliateGuide />} />
             <Route path="/blog/how-to-start-amazon-affiliate-marketing-2025" element={<HowToStartAmazonAffiliateMarketing />} />
             <Route path="/blog/amazon-affiliate-commission-rates-2025" element={<AmazonAffiliateCommissionRates2025 />} />
