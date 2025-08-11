@@ -1,3 +1,4 @@
+
 import BlogLayout from "@/components/BlogLayout";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -49,7 +50,7 @@ const AmazonAffiliateGuide = () => {
         {/* Featured Image */}
         <div className="mb-8">
           <img
-            src="/lovable-uploads/amazon-affiliate-guide-featured.png"
+            src="/images/blog/amazon-affiliate-guide-featured.png"
             alt="Amazon affiliate marketing beginner guide 2025 infographic showing step-by-step process to earn money online with proven strategies and real examples for first $1000 in commissions"
             className="w-full h-96 object-cover rounded-lg"
           />

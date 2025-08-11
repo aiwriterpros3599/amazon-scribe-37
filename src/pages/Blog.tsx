@@ -19,7 +19,7 @@ const Blog = () => {
       date: "January 20, 2025",
       readTime: "15 min read",
       slug: "how-to-start-amazon-affiliate-marketing-2025",
-      image: "/lovable-uploads/amazon-affiliate-guide-featured.png",
+      image: "/images/blog/amazon-affiliate-guide-featured.png",
       featured: true
     },
     {
@@ -30,7 +30,7 @@ const Blog = () => {
       date: "January 19, 2025",
       readTime: "14 min read",
       slug: "ai-content-generation-affiliate-marketing-2025",
-      image: "/lovable-uploads/ai-content-generation-featured.png"
+      image: "/images/blog/ai-content-generation-featured.png"
     },
     {
       title: "How to Write Amazon Product Reviews That Actually Convert in 2025",
@@ -40,7 +40,7 @@ const Blog = () => {
       date: "January 18, 2025", 
       readTime: "16 min read",
       slug: "how-to-write-amazon-product-reviews-convert-2025",
-      image: "/lovable-uploads/f1ad64f6-e8e1-4b81-a2fa-bab62f53153c.png"
+      image: "/images/blog/product-reviews-guide-featured.png"
     },
     {
       title: "10 Best Amazon Affiliate Niches That Actually Make Money in 2025",
@@ -50,7 +50,7 @@ const Blog = () => {
       date: "January 17, 2025",
       readTime: "18 min read", 
       slug: "best-amazon-affiliate-niches-2025",
-      image: "/lovable-uploads/amazon-niches-featured.png"
+      image: "/images/blog/amazon-niches-featured.png"
     }
   ];
 
@@ -139,11 +139,22 @@ const Blog = () => {
       >
         {/* Featured Blog Hero Image */}
         <div className="mb-16">
-          <img
-            src="/lovable-uploads/blog-homepage-hero.png"
-            alt="AI Affiliate Pro Blog homepage featuring expert Amazon affiliate marketing insights, AI content creation strategies, and comprehensive guides for affiliate marketers"
-            className="w-full h-64 object-cover rounded-lg mb-8"
-          />
+          <div className="relative overflow-hidden rounded-lg">
+            <img
+              src="/images/blog/blog-homepage-hero.png"
+              alt="AI Affiliate Pro Blog homepage featuring expert Amazon affiliate marketing insights, AI content creation strategies, and comprehensive guides for affiliate marketers"
+              className="w-full h-64 md:h-80 lg:h-96 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-8 text-white">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                Master Amazon Affiliate Marketing with AI
+              </h2>
+              <p className="text-lg opacity-90">
+                Expert strategies, tools, and insights for modern affiliate marketers
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Newsletter Section */}

@@ -22,7 +22,7 @@ const AmazonAffiliateMarketing = () => {
       date: "January 20, 2025",
       readTime: "15 min read",
       slug: "how-to-start-amazon-affiliate-marketing-2025",
-      image: "/lovable-uploads/813e6d1a-efce-4342-a260-33552b74c90f.png"
+      image: "/images/blog/amazon-affiliate-guide-featured.png"
     },
     {
       title: "Amazon Affiliate Commission Rates 2025: Complete Category Breakdown",
@@ -31,7 +31,7 @@ const AmazonAffiliateMarketing = () => {
       date: "January 18, 2025",
       readTime: "12 min read",
       slug: "amazon-affiliate-commission-rates-2025",
-      image: "/lovable-uploads/f1ad64f6-e8e1-4b81-a2fa-bab62f53153c.png"
+      image: "/images/blog/amazon-commission-rates-featured.png"
     },
     {
       title: "10 Best Amazon Affiliate Niches That Actually Make Money in 2025",
@@ -40,7 +40,7 @@ const AmazonAffiliateMarketing = () => {
       date: "January 16, 2025",
       readTime: "18 min read",
       slug: "best-amazon-affiliate-niches-2025",
-      image: "/lovable-uploads/1a640917-1477-48d2-ab93-08c66f92dc93.png"
+      image: "/images/blog/amazon-niches-featured.png"
     }
   ];
 
