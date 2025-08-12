@@ -43,91 +43,106 @@ serve(async (req) => {
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
 
-    // Get user from database
-    const { data: dbUser } = await supabaseClient
-      .from("users")
-      .select("*")
-      .eq("id", user.id)
-      .single();
+    // Check if customer exists
+    const customers = await stripe.customers.list({ email: user.email, limit: 1 });
+    
+    if (customers.data.length === 0) {
+      logStep("No customer found, updating unsubscribed state");
+      
+      // Update user in database
+      await supabaseClient.from("users").upsert({
+        id: user.id,
+        email: user.email,
+        subscription_status: 'free',
+        subscription_plan: 'free',
+        current_period_end: null,
+        trial_end_date: null,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'id' });
 
-    if (!dbUser?.stripe_customer_id) {
-      logStep("No Stripe customer found, updating as free user");
-      await supabaseClient
-        .from("users")
-        .update({
-          subscription_status: 'free',
-          subscription_plan: 'free',
-          updated_at: new Date().toISOString(),
-        })
-        .eq("id", user.id);
-
-      return new Response(JSON.stringify({
+      return new Response(JSON.stringify({ 
         subscribed: false,
         subscription_plan: 'free',
-        subscription_status: 'free'
+        subscription_status: 'free',
+        current_period_end: null,
+        trial_end: null
       }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 200,
       });
     }
 
-    // Check Stripe subscription status
+    const customerId = customers.data[0].id;
+    logStep("Found Stripe customer", { customerId });
+
+    // Get active subscriptions
     const subscriptions = await stripe.subscriptions.list({
-      customer: dbUser.stripe_customer_id,
+      customer: customerId,
       status: "all",
       limit: 1,
     });
 
-    let subscriptionData = {
-      subscribed: false,
-      subscription_plan: 'free' as const,
-      subscription_status: 'free' as const,
-      current_period_end: null as string | null,
-      trial_end: null as string | null,
-    };
+    let subscriptionPlan = 'free';
+    let subscriptionStatus = 'free';
+    let currentPeriodEnd = null;
+    let trialEnd = null;
+    const hasActiveSub = subscriptions.data.length > 0 && 
+      ['active', 'trialing'].includes(subscriptions.data[0].status);
 
     if (subscriptions.data.length > 0) {
       const subscription = subscriptions.data[0];
-      const isActive = ['active', 'trialing'].includes(subscription.status);
+      subscriptionStatus = subscription.status;
+      currentPeriodEnd = new Date(subscription.current_period_end * 1000).toISOString();
       
-      // Determine plan from price
-      let plan = 'free';
-      if (subscription.items.data[0]) {
-        const amount = subscription.items.data[0].price.unit_amount || 0;
-        if (amount >= 40000) plan = 'elite_agency';
-        else if (amount >= 1500) plan = 'basic_pro';
+      if (subscription.trial_end) {
+        trialEnd = new Date(subscription.trial_end * 1000).toISOString();
       }
 
-      subscriptionData = {
-        subscribed: isActive,
-        subscription_plan: plan as 'free' | 'basic_pro' | 'elite_agency',
-        subscription_status: subscription.status as any,
-        current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
-        trial_end: subscription.trial_end ? new Date(subscription.trial_end * 1000).toISOString() : null,
-      };
+      // Determine plan from price
+      const priceId = subscription.items.data[0].price.id;
+      const price = await stripe.prices.retrieve(priceId);
+      const amount = price.unit_amount || 0;
+
+      if (amount >= 4900 || amount >= 3500) {
+        subscriptionPlan = 'elite_agency';
+      } else if (amount >= 1900 || amount >= 1400) {
+        subscriptionPlan = 'basic_pro';
+      }
 
       logStep("Subscription found", { 
         subscriptionId: subscription.id, 
-        status: subscription.status, 
-        plan 
+        status: subscriptionStatus,
+        plan: subscriptionPlan,
+        currentPeriodEnd,
+        trialEnd
       });
     }
 
     // Update user in database
-    await supabaseClient
-      .from("users")
-      .update({
-        subscription_status: subscriptionData.subscription_status,
-        subscription_plan: subscriptionData.subscription_plan,
-        current_period_end: subscriptionData.current_period_end,
-        trial_end_date: subscriptionData.trial_end,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", user.id);
+    await supabaseClient.from("users").upsert({
+      id: user.id,
+      email: user.email,
+      stripe_customer_id: customerId,
+      subscription_status: subscriptionStatus,
+      subscription_plan: subscriptionPlan,
+      current_period_end: currentPeriodEnd,
+      trial_end_date: trialEnd,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'id' });
 
-    logStep("Updated user subscription data", subscriptionData);
+    logStep("Updated database with subscription info", { 
+      subscribed: hasActiveSub, 
+      subscriptionPlan,
+      subscriptionStatus
+    });
 
-    return new Response(JSON.stringify(subscriptionData), {
+    return new Response(JSON.stringify({
+      subscribed: hasActiveSub,
+      subscription_plan: subscriptionPlan,
+      subscription_status: subscriptionStatus,
+      current_period_end: currentPeriodEnd,
+      trial_end: trialEnd
+    }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });

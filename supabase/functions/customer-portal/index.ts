@@ -43,21 +43,19 @@ serve(async (req) => {
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
 
-    // Get user's Stripe customer ID
-    const { data: dbUser } = await supabaseClient
-      .from("users")
-      .select("stripe_customer_id")
-      .eq("id", user.id)
-      .single();
-
-    if (!dbUser?.stripe_customer_id) {
+    // Check if customer exists
+    const customers = await stripe.customers.list({ email: user.email, limit: 1 });
+    if (customers.data.length === 0) {
       throw new Error("No Stripe customer found for this user");
     }
 
-    const origin = req.headers.get("origin") || "https://bhhgesyiucnxxhsmrphn.supabase.co";
+    const customerId = customers.data[0].id;
+    logStep("Found Stripe customer", { customerId });
+
+    const origin = req.headers.get("origin") || "http://localhost:3000";
     
     const portalSession = await stripe.billingPortal.sessions.create({
-      customer: dbUser.stripe_customer_id,
+      customer: customerId,
       return_url: `${origin}/subscription`,
     });
 

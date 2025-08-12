@@ -51,79 +51,53 @@ serve(async (req) => {
     let customerId;
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
-      logStep("Existing customer found", { customerId });
-    } else {
-      const customer = await stripe.customers.create({
-        email: user.email,
-        name: user.user_metadata?.full_name || user.email,
-      });
-      customerId = customer.id;
-      logStep("New customer created", { customerId });
-
-      // Update user with Stripe customer ID
-      await supabaseClient
-        .from("users")
-        .update({ stripe_customer_id: customerId })
-        .eq("id", user.id);
     }
 
     // Define pricing
-    const pricingConfig = {
+    const pricing = {
       basic_pro: {
-        monthly: { amount: 1900, trial_days: 7 },
-        yearly: { amount: 16800, trial_days: 7 } // 26% discount
+        monthly: { amount: 1900, trial_days: 7 }, // $19
+        yearly: { amount: 1400, trial_days: 7 }   // $14/month billed yearly
       },
       elite_agency: {
-        monthly: { amount: 4900, trial_days: 14 },
-        yearly: { amount: 42000, trial_days: 14 } // 29% discount
+        monthly: { amount: 4900, trial_days: 14 }, // $49
+        yearly: { amount: 3500, trial_days: 14 }   // $35/month billed yearly
       }
     };
 
-    if (!pricingConfig[plan as keyof typeof pricingConfig]) {
-      throw new Error(`Invalid plan: ${plan}`);
+    if (!pricing[plan as keyof typeof pricing]) {
+      throw new Error("Invalid plan selected");
     }
 
-    const planConfig = pricingConfig[plan as keyof typeof pricingConfig];
-    const periodConfig = planConfig[period as keyof typeof planConfig];
+    const planConfig = pricing[plan as keyof typeof pricing][period as 'monthly' | 'yearly'];
+    const interval = period === 'yearly' ? 'year' : 'month';
 
-    const sessionParams: Stripe.Checkout.SessionCreateParams = {
+    logStep("Creating checkout session", { plan, period, amount: planConfig.amount });
+
+    const session = await stripe.checkout.sessions.create({
       customer: customerId,
+      customer_email: customerId ? undefined : user.email,
       line_items: [
         {
           price_data: {
             currency: "usd",
             product_data: {
-              name: `${plan === 'basic_pro' ? 'Basic Pro' : 'Elite Agency'} Plan`,
-              description: plan === 'basic_pro' 
-                ? '25,000 words/month + Premium features' 
-                : '100,000 words/month + All features',
+              name: plan === 'basic_pro' ? 'AI Affiliate Pro - Basic Pro' : 'AI Affiliate Pro - Elite Agency',
             },
-            unit_amount: periodConfig.amount,
-            recurring: { interval: period === 'yearly' ? 'year' : 'month' },
+            unit_amount: planConfig.amount,
+            recurring: { interval },
           },
           quantity: 1,
         },
       ],
       mode: "subscription",
-      success_url: `${req.headers.get("origin")}/subscription/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/pricing`,
       subscription_data: {
-        trial_period_days: periodConfig.trial_days,
-        metadata: {
-          user_id: user.id,
-          plan: plan,
-          period: period,
-        },
+        trial_period_days: planConfig.trial_days,
       },
-      allow_promotion_codes: true,
-      customer_update: {
-        address: 'auto',
-        name: 'auto',
-      },
-      payment_method_collection: 'if_required',
-    };
+      success_url: `${req.headers.get("origin")}/subscription?success=true`,
+      cancel_url: `${req.headers.get("origin")}/pricing?canceled=true`,
+    });
 
-    const session = await stripe.checkout.sessions.create(sessionParams);
     logStep("Checkout session created", { sessionId: session.id, url: session.url });
 
     return new Response(JSON.stringify({ url: session.url }), {

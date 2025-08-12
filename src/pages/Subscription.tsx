@@ -8,9 +8,20 @@ import { CreditCard, Download, Settings, TrendingUp, Calendar, AlertCircle } fro
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
-import type { Database } from "@/integrations/supabase/types";
 
-type UserRow = Database['public']['Tables']['users']['Row'];
+// Type definitions for user data
+interface UserData {
+  id: string;
+  email: string;
+  full_name: string | null;
+  subscription_plan: 'free' | 'basic_pro' | 'elite_agency';
+  subscription_status: string;
+  current_period_end: string | null;
+  trial_end_date: string | null;
+  words_used_current_month: number;
+  words_limit: number;
+  reviews_generated_current_month: number;
+}
 
 interface SubscriptionData {
   subscribed: boolean;
@@ -22,7 +33,7 @@ interface SubscriptionData {
 
 const Subscription = () => {
   const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null>(null);
-  const [userData, setUserData] = useState<UserRow | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const { toast } = useToast();
@@ -50,8 +61,8 @@ const Subscription = () => {
       if (stripeError) throw stripeError;
       setSubscriptionData(stripeData);
 
-      // Get user data from database
-      const { data: dashboardData, error: dashboardError } = await supabase
+      // Get user data from database using type assertion
+      const { data: dashboardData, error: dashboardError } = await (supabase as any)
         .from('users')
         .select('*')
         .eq('id', session.user.id)
@@ -62,7 +73,7 @@ const Subscription = () => {
         throw dashboardError;
       }
 
-      setUserData(dashboardData);
+      setUserData(dashboardData as UserData);
 
     } catch (error) {
       console.error('Error fetching subscription data:', error);
